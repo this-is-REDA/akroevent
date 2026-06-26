@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-brand-dark text-white antialiased;
+    cursor: none;
+  }
+
+  @media (pointer: coarse) {
+    body {
+      cursor: auto;
+    }
+  }
+
+  ::selection {
+    @apply bg-brand-red text-white;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-5 py-24 sm:px-8 lg:px-12 lg:py-32;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .btn-outline {
+    @apply relative overflow-hidden border border-white/30 px-6 py-3 font-display text-sm uppercase tracking-[0.2em] text-white transition-colors duration-300 sm:px-8 sm:py-4;
+  }
+
+  .btn-outline::before {
+    content: "";
+    @apply absolute inset-0 origin-left scale-x-0 bg-brand-red transition-transform duration-300;
+  }
+
+  .btn-outline:hover::before {
+    @apply scale-x-100;
+  }
+
+  .btn-outline span {
+    @apply relative z-10;
+  }
+
+  .nav-link {
+    @apply relative text-xs uppercase tracking-[0.15em] text-gray-600 transition-colors duration-300 hover:text-brand-dark;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-brand-red transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .input-underline {
+    @apply w-full border-0 border-b border-white/10 bg-transparent px-0 py-4 text-white placeholder-white/25 outline-none transition-colors duration-300 focus:border-brand-red;
+  }
+
+  .noise-overlay {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  .section-dark {
+    @apply relative bg-brand-dark;
+  }
+
+  .section-surface {
+    @apply relative bg-brand-secondary;
+  }
+
+  /* Admin buttons */
+  .admin-btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-sm border px-3.5 py-2.5 text-[11px] font-medium uppercase tracking-[0.12em] transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 sm:min-h-0 sm:py-2;
+  }
+
+  .admin-btn-view {
+    @apply admin-btn border-white/10 bg-white/[0.03] text-luxury-muted hover:border-white/25 hover:bg-white/[0.06] hover:text-white;
+  }
+
+  .admin-btn-whatsapp {
+    @apply admin-btn border-[#25D366]/30 bg-[#25D366]/10 text-[#25D366] hover:border-[#25D366] hover:bg-[#25D366] hover:text-white hover:shadow-[0_0_16px_rgba(37,211,102,0.25)];
+  }
+
+  .admin-btn-danger {
+    @apply admin-btn border-brand-red/25 bg-brand-red/5 text-brand-red hover:border-brand-red hover:bg-brand-red hover:text-white hover:shadow-[0_0_16px_rgba(232,25,44,0.2)];
+  }
+
+  .admin-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-brand-red bg-brand-red px-8 py-3.5 font-display text-sm uppercase tracking-[0.2em] text-white transition-all duration-200 hover:bg-red-700 hover:shadow-[0_0_24px_rgba(232,25,44,0.35)] disabled:pointer-events-none disabled:opacity-40;
+  }
+
+  .admin-btn-email {
+    @apply admin-btn border-white/10 bg-white/[0.03] text-luxury-muted hover:border-brand-red/40 hover:bg-brand-red/5 hover:text-brand-red;
+  }
+
+  .admin-btn-filter {
+    @apply inline-flex min-h-[44px] shrink-0 items-center rounded-sm border px-4 py-3 text-[11px] uppercase tracking-[0.12em] transition-all duration-200 sm:min-h-0 sm:py-2.5;
+  }
+
+  .admin-btn-filter-active {
+    @apply admin-btn-filter border-brand-red bg-brand-red/15 text-brand-red shadow-[inset_0_0_0_1px_rgba(232,25,44,0.2)];
+  }
+
+  .admin-btn-filter-inactive {
+    @apply admin-btn-filter border-white/10 bg-white/[0.02] text-luxury-muted hover:border-white/20 hover:bg-white/[0.05] hover:text-white;
+  }
+
+  .admin-btn-logout {
+    @apply flex w-full items-center justify-center gap-2 rounded-sm border border-white/10 bg-white/[0.02] px-4 py-3 text-[11px] uppercase tracking-[0.12em] text-luxury-muted transition-all duration-200 hover:border-brand-red/40 hover:bg-brand-red/5 hover:text-brand-red;
+  }
+
+  .admin-btn-close {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-white/10 bg-white/[0.03] text-luxury-muted transition-all duration-200 hover:border-white/25 hover:bg-white/[0.06] hover:text-white;
+  }
+
+  .admin-btn-modal {
+    @apply flex w-full items-center justify-center gap-2 rounded-sm border px-5 py-3.5 text-[11px] uppercase tracking-[0.12em] transition-all duration-200 sm:flex-1;
+  }
+
+  .admin-btn-modal-whatsapp {
+    @apply admin-btn-modal border-[#25D366]/40 bg-[#25D366]/10 text-[#25D366] hover:border-[#25D366] hover:bg-[#25D366] hover:text-white hover:shadow-[0_0_20px_rgba(37,211,102,0.3)];
+  }
+
+  .admin-btn-modal-email {
+    @apply admin-btn-modal border-white/10 bg-white/[0.03] text-luxury-muted hover:border-brand-red/40 hover:bg-brand-red/5 hover:text-brand-red;
+  }
+
+  .admin-nav-link {
+    @apply flex min-h-[44px] items-center gap-3 rounded-sm border-l-2 px-4 py-3.5 text-[11px] uppercase tracking-[0.12em] transition-all duration-200 lg:min-h-0 lg:py-3;
+  }
+
+  .admin-nav-link-active {
+    @apply admin-nav-link border-brand-red bg-brand-red/10 text-white shadow-[inset_4px_0_0_0_#E8192C];
+  }
+
+  .admin-nav-link-inactive {
+    @apply admin-nav-link border-transparent text-luxury-muted hover:border-white/20 hover:bg-white/[0.03] hover:text-white;
+  }
+
+  .admin-status-select {
+    @apply cursor-pointer appearance-none rounded-sm border py-1.5 pl-3 pr-8 text-[11px] uppercase tracking-wider outline-none transition-all duration-200 disabled:opacity-50;
+  }
+
+  .admin-input {
+    @apply w-full rounded-sm border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-white placeholder-white/25 outline-none transition-all duration-200 focus:border-brand-red/50 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_rgba(232,25,44,0.08)];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
