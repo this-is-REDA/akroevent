@@ -115,20 +115,25 @@ export default function Contact({ settings }: ContactProps) {
             </motion.div>
           </div>
 
-          <motion.div
+          <motion.a
+            href="https://maps.app.goo.gl/SKia674D4HQcW3DbA?g_st=ic"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20 flex items-center justify-center border border-white/[0.06] py-14"
+            className="group mt-20 flex items-center justify-center border border-white/[0.06] py-14 transition-colors hover:border-brand-red/30"
           >
             <div className="text-center">
               <MapPin className="mx-auto text-brand-red" size={24} strokeWidth={1} />
-              <p className="mt-4 font-display text-2xl uppercase tracking-wide text-white">Maroc</p>
+              <p className="mt-4 font-display text-2xl uppercase tracking-wide text-white transition-colors group-hover:text-brand-red">
+                Maroc
+              </p>
               <p className="mt-2 text-sm text-luxury-muted">
                 Interventions sur l&apos;ensemble du territoire marocain
               </p>
             </div>
-          </motion.div>
+          </motion.a>
         </div>
       </section>
     </>
