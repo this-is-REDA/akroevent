@@ -24,8 +24,8 @@ export default function ParticleBackground() {
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 12000);
-      particles = Array.from({ length: Math.min(count, 80) }, () => ({
+      const count = Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 8000);
+      particles = Array.from({ length: Math.min(count, 160) }, () => ({
         x: Math.random() * canvas.offsetWidth,
         y: Math.random() * canvas.offsetHeight,
         vx: (Math.random() - 0.5) * 0.3,
@@ -57,7 +57,7 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(232, 25, 44, ${0.06 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(232, 25, 44, ${0.18 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -80,7 +80,7 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 h-full w-full opacity-60"
+      className="absolute inset-0 h-full w-full opacity-80"
       aria-hidden="true"
     />
   );

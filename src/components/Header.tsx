@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
@@ -15,11 +15,34 @@ const navLinks = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 60);
+
+      if (currentScrollY <= 80) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 8) {
+        setVisible(false);
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -29,36 +52,44 @@ export default function Header() {
   return (
     <>
       <header
-        className="fixed left-0 right-0 top-0 z-50 border-b border-black/10 bg-white transition-all duration-500"
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+          visible ? "translate-y-0" : "-translate-y-full pointer-events-none"
+        } ${
+          scrolled
+            ? "header-glass-light py-0"
+            : "border-b border-transparent bg-white backdrop-blur-md"
+        }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 sm:px-8 sm:py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
           <a
             href="#accueil"
             onClick={(e) => { e.preventDefault(); handleNavClick("#accueil"); }}
             className="group shrink-0 md:justify-self-start"
           >
-            <Logo height={32} priority />
+            <Logo height={scrolled ? 30 : 34} priority />
           </a>
 
-          {/* Center nav — desktop */}
           <nav className="hidden items-center gap-5 md:flex md:gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="nav-link"
+                className="nav-link-light"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* CTA — desktop */}
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-            className="hidden justify-self-end border border-brand-red px-5 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-brand-red transition-all duration-300 hover:bg-brand-red hover:text-white md:inline-block"
+            className={`hidden justify-self-end px-5 py-2 font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 md:inline-block ${
+              scrolled
+                ? "border border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-glow-red-sm"
+                : "btn-primary !px-5 !py-2"
+            }`}
           >
             Contact
           </a>
@@ -74,7 +105,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Fullscreen mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -116,7 +146,7 @@ export default function Header() {
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-                className="block border border-brand-red py-4 text-center font-display text-sm uppercase tracking-[0.2em] text-brand-red"
+                className="btn-primary block py-4 text-center"
               >
                 Contact
               </a>

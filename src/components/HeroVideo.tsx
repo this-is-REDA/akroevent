@@ -43,7 +43,8 @@ export default function HeroVideo({ videoSrc = "/hero-vr.mp4" }: HeroVideoProps)
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="absolute bottom-5 left-5 flex items-center gap-2 border border-white/[0.08] bg-brand-dark/70 px-3 py-1.5 backdrop-blur-sm"
+        className="absolute bottom-5 left-5 flex items-center gap-2 border border-white/10 bg-brand-dark/80 px-3 py-1.5 backdrop-blur-md"
+        style={{ boxShadow: "0 0 20px rgba(232, 25, 44, 0.2)" }}
       >
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-red opacity-75" />

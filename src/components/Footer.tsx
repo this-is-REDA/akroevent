@@ -10,7 +10,11 @@ export default function Footer() {
   return (
     <>
       <SectionDivider />
-      <footer className="border-t border-black/10 bg-white py-10">
+      <footer className="relative border-t border-black/10 bg-white py-10">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-red/40 to-transparent"
+          aria-hidden="true"
+        />
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:px-8 md:flex-row lg:px-12">
           <a
             href="#accueil"

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Users, Lightbulb, Trophy } from "lucide-react";
 import SectionDivider from "./SectionDivider";
+import AmbientOrbs from "./AmbientOrbs";
+import RevealOnScroll from "./RevealOnScroll";
 
 const pillars = [
   {
@@ -42,6 +44,8 @@ export default function About() {
     <>
       <SectionDivider />
       <section id="apropos" className="section-dark section-padding overflow-hidden">
+        <AmbientOrbs />
+        <div className="grid-premium pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
         {/* Decorative background number */}
         <div
           className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none font-display text-[12rem] leading-none text-white/[0.02] sm:text-[20rem] lg:text-[30rem]"
@@ -57,17 +61,16 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             className="grid items-start gap-16 lg:grid-cols-2 lg:gap-24"
           >
+            <RevealOnScroll direction="left">
             <motion.div custom={0} variants={fadeUp}>
-              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
-                Qui Sommes-Nous ?
-              </span>
+              <span className="section-label">Qui Sommes-Nous ?</span>
               <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Une Agence
                 <br />
                 Marocaine{" "}
                 <span className="heading-display-3d-accent">360°</span>
               </h2>
-              <div className="my-8 h-px w-full max-w-sm bg-white/10" />
+              <div className="section-divider my-8 w-full max-w-sm" />
               <p className="text-base leading-relaxed text-luxury-muted">
                 Akro Event est une agence marocaine 360°, spécialisée dans
                 l&apos;événementiel, la communication, la conception de stands, le
@@ -87,7 +90,9 @@ export default function About() {
                 cœur de chacune de nos actions.
               </p>
             </motion.div>
+            </RevealOnScroll>
 
+            <RevealOnScroll direction="right" delay={0.15}>
             <motion.div custom={1} variants={fadeUp} className="relative">
               <div className="glass-card relative p-6 sm:p-10 lg:p-14">
                 <div className="absolute left-0 top-0 h-full w-1 bg-brand-red" />
@@ -97,12 +102,13 @@ export default function About() {
                 <p className="heading-display-3d mt-4 font-display text-3xl uppercase tracking-wide">
                   Ans d&apos;Expérience
                 </p>
-                <div className="my-6 h-px w-12 bg-brand-gold" />
+                <div className="section-divider my-6 w-12" />
                 <p className="text-sm uppercase tracking-[0.2em] text-luxury-muted">
                   Au service de l&apos;événementiel marocain
                 </p>
               </div>
             </motion.div>
+            </RevealOnScroll>
           </motion.div>
 
           {/* Value pillars */}
@@ -115,8 +121,8 @@ export default function About() {
                 viewport={{ once: true, margin: "-50px" }}
                 custom={i}
                 variants={fadeUp}
-                whileHover={{ y: -4 }}
-                className="glass-card group relative overflow-hidden p-8 transition-all duration-300 hover:border-brand-red/20"
+                whileHover={{ y: -8 }}
+                className="glass-card group relative overflow-hidden p-8 transition-all duration-500 hover:shadow-card-hover"
               >
                 <div className="absolute left-0 top-0 h-full w-1 bg-brand-red/0 transition-colors duration-300 group-hover:bg-brand-red" />
                 <pillar.icon size={22} strokeWidth={1} className="text-brand-red" />
@@ -126,7 +132,7 @@ export default function About() {
                 <p className="mt-1 text-xs font-light italic text-brand-gold">
                   {pillar.subtitle}
                 </p>
-                <div className="my-4 h-px w-8 bg-white/10" />
+                <div className="section-divider my-4 w-8" />
                 <p className="text-sm leading-relaxed text-luxury-muted">
                   {pillar.description}
                 </p>

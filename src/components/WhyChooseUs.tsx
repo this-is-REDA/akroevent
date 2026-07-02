@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Shuffle, Award, Ear } from "lucide-react";
 import SectionDivider from "./SectionDivider";
+import AmbientOrbs from "./AmbientOrbs";
 
 const cards = [
   {
@@ -35,8 +36,9 @@ export default function WhyChooseUs() {
   return (
     <>
       <SectionDivider />
-      <section className="section-surface section-padding">
-        <div className="mx-auto max-w-7xl">
+      <section className="section-surface section-padding overflow-hidden">
+        <AmbientOrbs />
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,16 +46,16 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">Nos Atouts</span>
+            <span className="section-label">Nos Atouts</span>
             <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Pourquoi Nous
               <br />
               Choisir ?
             </h2>
-            <div className="mt-8 h-px w-full max-w-xs bg-white/10" />
+            <div className="section-divider mt-8 w-full max-w-xs" />
           </motion.div>
 
-          <div className="mt-20 grid gap-px bg-white/[0.06] sm:grid-cols-2">
+          <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {cards.map((card, i) => (
               <motion.div
                 key={card.title}
@@ -61,17 +63,18 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative min-h-[320px] bg-brand-secondary px-6 py-10 transition-colors duration-300 hover:bg-white/[0.03] sm:px-10 sm:py-12 lg:min-h-[340px] lg:px-12 lg:py-14"
+                whileHover={{ y: -6 }}
+                className="group brand-card relative min-h-[300px] overflow-hidden px-6 py-10 sm:px-10 sm:py-12"
               >
                 <span
-                  className="pointer-events-none absolute left-6 top-8 font-display text-6xl leading-none tabular-nums text-white/35 transition-colors duration-300 group-hover:text-white/55 sm:left-10 sm:top-10 sm:text-7xl lg:left-12 lg:text-8xl"
+                  className="pointer-events-none absolute left-6 top-8 font-display text-6xl leading-none tabular-nums text-brand-red/15 transition-colors duration-300 group-hover:text-brand-red/25 sm:left-10 sm:top-10 sm:text-7xl lg:text-8xl"
                   aria-hidden="true"
                 >
                   0{i + 1}
                 </span>
 
                 <div className="relative z-10 pt-16 sm:pt-20">
-                  <div className="flex h-10 w-10 items-center justify-center border border-brand-red/25 transition-colors duration-300 group-hover:border-brand-red/50 group-hover:bg-brand-red/5">
+                  <div className="icon-glow flex h-12 w-12 items-center justify-center">
                     <card.icon
                       size={18}
                       strokeWidth={1.25}

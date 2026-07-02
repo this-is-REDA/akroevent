@@ -1,9 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
 import ParticleBackground from "./ParticleBackground";
-import HeroVideo from "./HeroVideo";
+import AmbientOrbs from "./AmbientOrbs";
+import SplitText from "./SplitText";
+import Scanlines from "./Scanlines";
+import FloatingShapes from "./FloatingShapes";
+import GlitchText from "./GlitchText";
+import MagneticButton from "./MagneticButton";
 
 const stats = [
   { value: 850, prefix: "+", label: "projets" },
@@ -12,139 +18,174 @@ const stats = [
   { value: 15, prefix: "+", label: "ans d'expérience" },
 ];
 
-export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: { heroVideoSrc?: string }) {
+interface HeroProps {
+  heroVideoSrc?: string;
+}
+
+export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+  const videoX = useTransform(springX, [-0.5, 0.5], ["-3%", "3%"]);
+  const videoY = useTransform(springY, [-0.5, 0.5], ["-3%", "3%"]);
+  const videoScale = useTransform(springY, [-0.5, 0.5], [1.08, 1.12]);
+  const contentX = useTransform(springX, [-0.5, 0.5], ["2%", "-2%"]);
+  const contentY = useTransform(springY, [-0.5, 0.5], ["2%", "-2%"]);
+  const watermarkX = useTransform(springX, [-0.5, 0.5], ["-3%", "3%"]);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX / window.innerWidth - 0.5);
+      mouseY.set(e.clientY / window.innerHeight - 0.5);
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [mouseX, mouseY]);
+
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section
-      id="accueil"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-dark"
-    >
-      <ParticleBackground />
+    <section id="accueil" className="relative min-h-screen overflow-hidden bg-brand-dark">
+      <motion.div className="absolute inset-0" style={{ x: videoX, y: videoY, scale: videoScale }}>
+        <video
+          key={heroVideoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+          aria-hidden="true"
+        >
+          <source src={heroVideoSrc} type="video/mp4" />
+        </video>
+      </motion.div>
 
-      {/* Subtle mesh gradient */}
-      <div
-        className="absolute inset-0 opacity-40"
+      <div className="cinematic-overlay absolute inset-0 z-[1]" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-brand-dark via-brand-dark/92 to-brand-dark/25" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-brand-dark via-brand-dark/40 to-brand-dark" />
+      <div className="absolute inset-x-0 top-0 z-[2] h-24 bg-brand-dark sm:h-28" />
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_25%_50%,rgba(232,25,44,0.18)_0%,transparent_50%)]" />
+
+      {/* Giant watermark */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-end overflow-hidden pr-0 lg:pr-8"
+        style={{ x: watermarkX }}
         aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,25,44,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%)",
-        }}
-      />
+      >
+        <p className="select-none font-display text-[14vw] uppercase leading-[0.8] tracking-tight text-white/[0.03] lg:text-[11vw]">
+          AKRO
+          <br />
+          EVENT
+        </p>
+      </motion.div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pt-28 pb-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:pt-36">
-        {/* Left — text */}
-        <div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="font-display uppercase leading-[0.95] tracking-wide"
-          >
-            <span className="mb-6 flex items-center gap-4">
-              <span className="h-px w-12 bg-brand-red" aria-hidden="true" />
-              <span className="text-[10px] tracking-[0.2em] text-luxury-muted sm:text-xs sm:tracking-[0.3em]">
-                Agence Événementielle Marocaine — Team Building & Événements Corporate
-              </span>
-            </span>
+      <AmbientOrbs variant="hero" />
+      <FloatingShapes />
+      <div className="grid-premium pointer-events-none absolute inset-0 z-[4] opacity-50" aria-hidden="true" />
+      <ParticleBackground />
+      <Scanlines />
 
-            <span className="text-[clamp(3rem,8vw,6.5rem)]">
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="heading-display-3d block"
-              >
-                Unleash the{" "}
-                <span className="heading-display-3d-accent">fun,</span>
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
-                className="heading-display-3d block"
-              >
-                boost the{" "}
-                <span className="heading-display-3d-accent">team!</span>
-              </motion.span>
-            </span>
-          </motion.h1>
-
+      <motion.div
+        className="relative z-10 flex min-h-screen flex-col justify-center px-5 pt-[3.625rem] pb-8 sm:px-8 sm:pt-[3.75rem] lg:px-12 [@media(min-height:741px)]:pb-36"
+        style={{ x: contentX, y: contentY }}
+      >
+        <div className="mx-auto w-full max-w-7xl">
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="my-8 h-px w-full max-w-md origin-left bg-white/10"
-          />
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 flex flex-wrap items-center gap-3 sm:mb-5 sm:gap-4"
+          >
+            <span className="live-badge animate-glow-pulse">
+              <span className="live-dot" aria-hidden="true" />
+              Live Experience
+            </span>
+            <span className="section-label">Agence Événementielle · Maroc</span>
+          </motion.div>
+
+          <h1 className="max-w-4xl font-display uppercase leading-[0.9] tracking-wide text-[clamp(2rem,6vw,5rem)]">
+            <SplitText text="Unleash the" className="heading-display-3d block" delay={0.2} />
+            <GlitchText text="fun," className="text-gradient-fire mt-0.5 block" delay={0.55} />
+            <SplitText text="boost the" className="heading-display-3d mt-0.5 block" delay={0.75} />
+            <GlitchText text="team!" className="text-gradient-fire mt-0.5 block" delay={1.05} />
+          </h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="max-w-md text-sm font-normal italic leading-relaxed text-white/85 sm:text-base"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1.3 }}
+            className="mt-4 max-w-lg border-l-2 border-brand-red pl-4 text-sm font-light italic leading-relaxed text-white/85 sm:mt-5 sm:pl-5 sm:text-base lg:text-lg"
           >
-            Team building corporate, séminaires, stands sur mesure et gestion déléguée au Maroc.
+            Team building corporate, séminaires, stands sur mesure et gestion déléguée —
+            partout au Maroc.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-10 flex flex-wrap gap-4"
+            transition={{ duration: 0.6, delay: 1.5 }}
+            className="mt-4 flex flex-wrap gap-3 sm:mt-5 sm:gap-4"
           >
-            <button type="button" onClick={() => scrollTo("#services")} className="btn-outline">
-              <span>Nos Services</span>
-            </button>
-            <button type="button" onClick={() => scrollTo("#contact")} className="btn-outline">
-              <span>Contactez-nous</span>
-            </button>
+            <MagneticButton
+              onClick={() => scrollTo("#services")}
+              className="btn-primary btn-shine !px-5 !py-2.5 sm:!px-6 sm:!py-3"
+            >
+              Découvrir nos services →
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => scrollTo("#contact")}
+              className="btn-outline !px-5 !py-2.5 sm:!px-6 sm:!py-3"
+            >
+              <span>Demander un devis</span>
+            </MagneticButton>
           </motion.div>
         </div>
+      </motion.div>
 
-        {/* Right — VR video */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="relative hidden aspect-[4/5] overflow-hidden lg:block"
-        >
-          <HeroVideo videoSrc={heroVideoSrc} />
-        </motion.div>
-      </div>
-
-      {/* Mobile stats row */}
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-2 gap-3 px-5 pb-20 pt-4 sm:grid-cols-4 lg:hidden">
-        {stats.map((stat, i) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 + i * 0.1 }}
-            className="glass-card px-4 py-3"
-          >
-            <p className="font-display text-xl text-white">
-              <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} goldPrefix />
-            </p>
-            <p className="text-[10px] uppercase tracking-wider text-luxury-muted">{stat.label}</p>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Scroll line */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 lg:flex"
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-4 left-4 right-4 z-20 sm:bottom-6 sm:left-8 sm:right-8 lg:left-12 lg:right-12 [@media(max-height:740px)]:hidden"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-luxury-muted">Scroll</span>
-        <motion.div
-          animate={{ scaleY: [1, 0.3, 1] }}
-          transition={{ duration: 1.8, repeat: Infinity }}
-          className="h-12 w-px bg-brand-red"
-        />
+        <div className="glass-card stats-strip mx-auto grid max-w-7xl grid-cols-2 sm:grid-cols-4">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8 + i * 0.12 }}
+              whileHover={{ scale: 1.03 }}
+              className="group relative px-3 py-4 text-center sm:px-5 sm:py-5"
+            >
+              <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <p className="font-display text-3xl text-white sm:text-4xl">
+                <AnimatedCounter
+                  value={stat.value}
+                  prefix={stat.prefix}
+                  suffix={stat.suffix}
+                  goldPrefix
+                  innovative3d
+                />
+              </p>
+              <p className="mt-2 text-[9px] uppercase tracking-[0.3em] text-luxury-muted sm:text-[10px]">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex [@media(max-height:740px)]:!hidden"
+      >
+        <span className="text-[9px] uppercase tracking-[0.4em] text-white/40">Scroll</span>
+        <div className="h-10 w-px bg-gradient-to-b from-brand-red to-transparent" />
       </motion.div>
     </section>
   );

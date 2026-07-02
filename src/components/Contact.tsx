@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import SectionDivider from "./SectionDivider";
+import AmbientOrbs from "./AmbientOrbs";
 import ContactForm from "./ContactForm";
 import { phoneToTelHref } from "@/lib/settings-utils";
 import type { SiteSettingsPublic } from "@/types/settings";
@@ -36,8 +37,9 @@ export default function Contact({ settings }: ContactProps) {
   return (
     <>
       <SectionDivider />
-      <section id="contact" className="section-surface section-padding">
-        <div className="mx-auto max-w-7xl">
+      <section id="contact" className="section-surface section-padding overflow-hidden">
+        <AmbientOrbs variant="contact" />
+        <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -45,15 +47,13 @@ export default function Contact({ settings }: ContactProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
-                Parlons de Votre Projet
-              </span>
+              <span className="section-label">Parlons de Votre Projet</span>
               <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Contactez
                 <br />
                 Nous
               </h2>
-              <div className="my-8 h-px w-full max-w-sm bg-white/10" />
+              <div className="section-divider my-8 w-full max-w-sm" />
               <p className="max-w-md text-base font-light italic leading-relaxed text-luxury-muted">
                 Votre événement sera une réussite assurée, pas qu&apos;une simple
                 prestation ! Contactez notre équipe pour discuter de vos besoins
@@ -110,6 +110,7 @@ export default function Contact({ settings }: ContactProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
+              className="glow-border"
             >
               <ContactForm />
             </motion.div>

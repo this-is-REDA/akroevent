@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import SectionDivider from "./SectionDivider";
+import AmbientOrbs from "./AmbientOrbs";
 
 const services = [
   {
@@ -65,8 +66,9 @@ export default function Services() {
   return (
     <>
       <SectionDivider />
-      <section id="services" className="section-surface section-padding overflow-hidden">
-        <div className="mx-auto max-w-7xl">
+      <section id="services" className="section-dark section-padding overflow-hidden">
+        <AmbientOrbs />
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -74,13 +76,13 @@ export default function Services() {
             transition={{ duration: 0.7 }}
             className="mb-20 max-w-2xl"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
+            <span className="section-label">
               Domaines d&apos;Activité
             </span>
             <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Nos Services
             </h2>
-            <div className="mt-8 h-px w-full max-w-xs bg-white/10" />
+            <div className="section-divider mt-8 w-full max-w-xs" />
             <p className="mt-6 text-base leading-relaxed text-white/55">
               Une offre globale dans le domaine de l&apos;événementiel à travers
               quatre pôles de compétence majeurs.
@@ -99,8 +101,10 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className={`group relative border-t border-white/[0.08] bg-brand-card/40 transition-colors duration-300 first:border-t-0 ${
-                    isOpen ? "bg-brand-card" : "hover:bg-brand-card/70"
+                  className={`group relative border-t border-white/[0.08] transition-all duration-500 first:border-t-0 ${
+                    isOpen
+                      ? "bg-brand-card shadow-glow-red-sm"
+                      : "bg-brand-card/40 hover:bg-brand-card/70"
                   }`}
                 >
                   <button

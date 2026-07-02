@@ -10,6 +10,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SeoJsonLd from "@/components/SeoJsonLd";
+import CtaBanner from "@/components/CtaBanner";
+import MarqueeBand from "@/components/MarqueeBand";
 import { getSiteSettings } from "@/lib/settings";
 import { getHeroVideoSrc } from "@/lib/hero-video";
 import { homeMetadata } from "@/lib/seo";
@@ -25,11 +27,13 @@ export default async function Home() {
       <Header />
       <main>
         <Hero heroVideoSrc={getHeroVideoSrc(settings)} />
+        <MarqueeBand />
         <About />
         <WhyChooseUs />
         <Services />
         <KeyNumbers />
         <Clients />
+        <CtaBanner />
         <Contact settings={settings} />
       </main>
       <Footer />

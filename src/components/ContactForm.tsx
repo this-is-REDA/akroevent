@@ -137,7 +137,7 @@ export default function ContactForm() {
           disabled={loading}
           whileHover={{ scale: loading ? 1 : 1.02 }}
           whileTap={{ scale: loading ? 1 : 0.98 }}
-          className="flex w-full items-center justify-center gap-2 bg-brand-red py-4 font-display text-sm uppercase tracking-[0.2em] text-white transition-colors hover:bg-red-700 disabled:opacity-60"
+          className="btn-primary flex w-full items-center justify-center gap-2 disabled:opacity-60"
         >
           {loading ? (
             <>
