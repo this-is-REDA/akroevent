@@ -55,14 +55,14 @@ export default function KeyNumbers() {
             transition={{ duration: 0.7 }}
             className="mb-20 text-center"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">Performance</span>
+            <span className="section-label">Performance</span>
             <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Akro Event en Chiffres
             </h2>
-            <div className="mx-auto mt-8 h-px w-24 bg-white/10" />
+            <div className="section-divider mx-auto mt-8 w-24" />
           </motion.div>
 
-          <div className="grid gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {numbers.map((num, i) => (
               <motion.div
                 key={num.label}
@@ -70,7 +70,7 @@ export default function KeyNumbers() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative bg-brand-secondary px-6 py-10 text-center transition-colors duration-300 hover:bg-white/[0.03] sm:px-8 sm:py-12"
+                className="group relative bg-brand-card px-6 py-10 text-center shadow-card transition-all duration-300 hover:shadow-card-hover sm:px-8 sm:py-12"
               >
                 <div className="stat-3d-stage mx-auto mb-5 w-fit">
                   <div className="stat-3d-float relative px-2 py-1">
@@ -88,10 +88,10 @@ export default function KeyNumbers() {
                   </div>
                 </div>
                 <div className="mx-auto my-5 h-px w-10 bg-brand-red/50 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-red" />
-                <p className="font-display text-xs uppercase tracking-[0.2em] text-white sm:text-sm">
+                <p className="font-display text-xs uppercase tracking-[0.2em] text-brand-ink sm:text-sm">
                   {num.label}
                 </p>
-                <p className="mx-auto mt-3 max-w-[14rem] text-xs leading-relaxed text-white/60 sm:text-sm">
+                <p className="mx-auto mt-3 max-w-[14rem] text-xs leading-relaxed text-luxury-muted sm:text-sm">
                   {num.description}
                 </p>
               </motion.div>

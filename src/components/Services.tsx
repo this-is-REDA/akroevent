@@ -74,20 +74,18 @@ export default function Services() {
             transition={{ duration: 0.7 }}
             className="mb-20 max-w-2xl"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
-              Domaines d&apos;Activité
-            </span>
+            <span className="section-label">Domaines d&apos;Activité</span>
             <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Nos Services
             </h2>
-            <div className="mt-8 h-px w-full max-w-xs bg-white/10" />
-            <p className="mt-6 text-base leading-relaxed text-white/55">
+            <div className="section-divider mt-8 w-full max-w-xs" />
+            <p className="mt-6 text-base leading-relaxed text-luxury-muted">
               Une offre globale dans le domaine de l&apos;événementiel à travers
               quatre pôles de compétence majeurs.
             </p>
           </motion.div>
 
-          <div className="border border-white/[0.08]">
+          <div className="border border-black/10 bg-brand-card shadow-card">
             {services.map((service, i) => {
               const isOpen = activeIndex === i;
               const num = String(i + 1).padStart(2, "0");
@@ -99,8 +97,8 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className={`group relative border-t border-white/[0.08] bg-brand-card/40 transition-colors duration-300 first:border-t-0 ${
-                    isOpen ? "bg-brand-card" : "hover:bg-brand-card/70"
+                  className={`group relative border-t border-black/[0.08] transition-colors duration-300 first:border-t-0 ${
+                    isOpen ? "bg-brand-dark" : "hover:bg-brand-dark/50"
                   }`}
                 >
                   <button
@@ -121,7 +119,7 @@ export default function Services() {
 
                     <span
                       className={`relative z-10 font-display text-4xl tabular-nums transition-colors duration-300 sm:text-5xl ${
-                        isOpen ? "text-white" : "text-white/70 group-hover:text-white"
+                        isOpen ? "text-brand-ink" : "text-brand-ink/70 group-hover:text-brand-ink"
                       }`}
                     >
                       {num}
@@ -130,20 +128,20 @@ export default function Services() {
                     <div className="relative z-10 flex-1">
                       <h3
                         className={`font-display text-xl uppercase tracking-wide transition-colors duration-300 sm:text-2xl md:text-4xl ${
-                          isOpen ? "heading-display-3d text-white" : "text-white group-hover:text-white"
+                          isOpen ? "heading-display-3d text-brand-ink" : "text-brand-ink group-hover:text-brand-ink"
                         }`}
                       >
                         {service.title}
                       </h3>
                       <p
                         className={`mt-1 text-xs font-light italic transition-colors duration-300 ${
-                          isOpen ? "text-brand-gold/90" : "text-white/45 group-hover:text-white/55"
+                          isOpen ? "text-brand-gold" : "text-luxury-muted group-hover:text-brand-ink/70"
                         }`}
                       >
                         {service.subtitle}
                       </p>
                       {!isOpen && (
-                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/50 sm:block">
+                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-luxury-muted sm:block">
                           {service.description}
                         </p>
                       )}
@@ -161,7 +159,7 @@ export default function Services() {
                       <ChevronDown
                         size={16}
                         className={`transition-all duration-300 ${
-                          isOpen ? "rotate-180 text-white/80" : "text-white/40 group-hover:text-white/60"
+                          isOpen ? "rotate-180 text-brand-ink/80" : "text-brand-ink/40 group-hover:text-brand-ink/60"
                         }`}
                       />
                     </div>
@@ -176,19 +174,19 @@ export default function Services() {
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="relative mb-8 border border-white/[0.08] border-t-brand-red/50 bg-brand-secondary p-6 sm:p-10">
-                          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
+                        <div className="relative mb-8 border border-black/[0.08] border-t-brand-red/50 bg-brand-secondary p-6 sm:p-10">
+                          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-luxury-muted">
                             {service.description}
                           </p>
                           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {service.categories.map((cat) => (
                               <div key={cat.label} className="border-l border-brand-gold/35 pl-5">
-                                <h4 className="font-display text-sm uppercase tracking-[0.15em] text-white">
+                                <h4 className="font-display text-sm uppercase tracking-[0.15em] text-brand-ink">
                                   {cat.label}
                                 </h4>
                                 <ul className="mt-3 space-y-2">
                                   {cat.items.map((item) => (
-                                    <li key={item} className="flex items-start gap-2 text-sm text-white/55">
+                                    <li key={item} className="flex items-start gap-2 text-sm text-luxury-muted">
                                       <span className="mt-2 h-px w-3 shrink-0 bg-brand-red/50" />
                                       {item}
                                     </li>

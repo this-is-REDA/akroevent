@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Bebas_Neue, Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import SiteExtras from "@/components/SiteExtras";
 import { rootMetadata } from "@/lib/seo";
@@ -8,6 +8,14 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-bebas",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -26,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${bebas.variable} ${dmSans.variable} overflow-x-hidden`}>
+    <html lang="fr" className={`${bebas.variable} ${cormorant.variable} ${dmSans.variable} overflow-x-hidden`}>
       <body className="overflow-x-hidden font-sans">
         {children}
         <SiteExtras />

@@ -46,7 +46,7 @@ export default function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fillStyle = `rgba(26, 26, 26, ${p.opacity * 0.35})`;
         ctx.fill();
 
         particles.slice(i + 1).forEach((p2) => {
