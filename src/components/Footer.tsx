@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <>
       <SectionDivider />
-      <footer className="bg-brand-dark py-10">
+      <footer className="border-t border-black/10 bg-white py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:px-8 md:flex-row lg:px-12">
           <a
             href="#accueil"
@@ -32,7 +32,7 @@ export default function Footer() {
               document.querySelector("#accueil")?.scrollIntoView({ behavior: "smooth" });
             }}
             whileHover={{ y: -2 }}
-            className="text-[10px] uppercase tracking-[0.2em] text-brand-gold transition-colors hover:text-brand-red"
+            className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/70 transition-colors hover:text-brand-red"
           >
             Retour en haut
           </motion.a>
