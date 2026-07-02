@@ -27,6 +27,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-bebas)", "system-ui", "sans-serif"],
+        brittany: ['"Brittany Signature"', "cursive"],
       },
       borderRadius: {
         DEFAULT: "0px",

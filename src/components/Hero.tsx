@@ -97,7 +97,7 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 flex flex-wrap items-center gap-3 sm:mb-5 sm:gap-4"
+            className="mb-8 flex flex-wrap items-center gap-3 sm:mb-10 sm:gap-4"
           >
             <span className="live-badge animate-glow-pulse">
               <span className="live-dot" aria-hidden="true" />
@@ -106,18 +106,22 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
             <span className="section-label">Agence Événementielle · Maroc</span>
           </motion.div>
 
-          <h1 className="max-w-4xl font-display uppercase leading-[0.9] tracking-wide text-[clamp(2rem,6vw,5rem)]">
-            <SplitText text="Unleash the" className="heading-display-3d block" delay={0.2} />
-            <GlitchText text="fun," className="text-gradient-fire mt-0.5 block" delay={0.55} />
-            <SplitText text="boost the" className="heading-display-3d mt-0.5 block" delay={0.75} />
-            <GlitchText text="team!" className="text-gradient-fire mt-0.5 block" delay={1.05} />
+          <h1 className="hero-title-font mb-8 flex max-w-3xl flex-col gap-6 font-brittany normal-case leading-[1.3] tracking-normal sm:mb-10 sm:gap-8 text-[clamp(1.75rem,5vw,3.75rem)]">
+            <span className="block">
+              <SplitText text="Unleash the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.2} />
+              <GlitchText text="fun," className="font-brittany text-gradient-fire" delay={0.55} />
+            </span>
+            <span className="block">
+              <SplitText text="boost the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.75} />
+              <GlitchText text="team!" className="font-brittany text-gradient-fire" delay={1.05} />
+            </span>
           </h1>
 
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 1.3 }}
-            className="mt-4 max-w-lg border-l-2 border-brand-red pl-4 text-sm font-light italic leading-relaxed text-white/85 sm:mt-5 sm:pl-5 sm:text-base lg:text-lg"
+            className="max-w-lg border-l-2 border-brand-red pl-4 text-sm font-light italic leading-relaxed text-white/85 sm:pl-5 sm:text-base lg:text-lg"
           >
             Team building corporate, séminaires, stands sur mesure et gestion déléguée —
             partout au Maroc.
