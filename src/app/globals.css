@@ -168,4 +168,98 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .heading-display-3d {
+    color: #ffffff;
+    text-shadow:
+      0 0.02em 0 rgba(255, 255, 255, 0.2),
+      0 0.04em 0 #333333,
+      0 0.06em 0 #2a2a2a,
+      0 0.08em 0 #222222,
+      0 0.1em 0 #1a1a1a,
+      0 0.12em 0 #121212,
+      0 0.14em 0 #0a0a0a,
+      0 0.16em 0.25em rgba(0, 0, 0, 0.55),
+      0 0.28em 0.55em rgba(0, 0, 0, 0.4),
+      0 0 0.12em rgba(255, 255, 255, 0.08);
+  }
+
+  .heading-display-3d-accent {
+    color: #e8192c;
+    text-shadow:
+      0 0.02em 0 #ff6b78,
+      0 0.04em 0 #d41428,
+      0 0.06em 0 #a61020,
+      0 0.08em 0 #780c18,
+      0 0.1em 0 #480810,
+      0 0.12em 0.35em rgba(232, 25, 44, 0.55),
+      0 0 0.15em rgba(232, 25, 44, 0.45),
+      0 0 0.45em rgba(232, 25, 44, 0.3);
+  }
+
+  .stat-3d-stage {
+    perspective: 900px;
+    perspective-origin: center center;
+  }
+
+  .stat-3d-float {
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .stat-3d-float {
+    transform: rotateX(14deg) rotateY(-12deg) translateZ(16px);
+  }
+
+  .stat-3d-glow {
+    position: absolute;
+    inset: -30%;
+    z-index: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(232, 25, 44, 0.35) 0%, transparent 68%);
+    transform: translateZ(-40px);
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+  }
+
+  .group:hover .stat-3d-glow {
+    opacity: 1;
+  }
+
+  .stat-3d-plate {
+    position: absolute;
+    inset: 18% 8% -12% 8%;
+    z-index: 0;
+    background: linear-gradient(145deg, rgba(232, 25, 44, 0.22) 0%, rgba(232, 25, 44, 0.04) 100%);
+    transform: skewX(-14deg) translateZ(-24px);
+    pointer-events: none;
+  }
+
+  .stat-number-innovative {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    transform: translateZ(28px);
+    text-shadow:
+      0 0.02em 0 rgba(255, 255, 255, 0.45),
+      0 0.04em 0 #5c1420,
+      0 0.06em 0 #4a1018,
+      0 0.08em 0 #380c12,
+      0 0.1em 0 #26080c,
+      0 0.12em 0 #140408,
+      0 0.14em 0.28em rgba(232, 25, 44, 0.45),
+      0 0.22em 0.5em rgba(0, 0, 0, 0.4);
+  }
+
+  .stat-prefix-innovative {
+    position: relative;
+    z-index: 1;
+    color: #e8c96a;
+    transform: translateZ(36px);
+    text-shadow:
+      0 0.02em 0 #f5d878,
+      0 0.04em 0 #9a7b32,
+      0 0.06em 0 #5c4a20,
+      0 0.1em 0.2em rgba(0, 0, 0, 0.35);
+  }
 }

@@ -9,6 +9,8 @@ interface AnimatedCounterProps {
   duration?: number;
   decimals?: number;
   goldPrefix?: boolean;
+  display3d?: boolean;
+  innovative3d?: boolean;
 }
 
 export default function AnimatedCounter({
@@ -18,6 +20,8 @@ export default function AnimatedCounter({
   duration = 2,
   decimals = 0,
   goldPrefix = false,
+  display3d = false,
+  innovative3d = false,
 }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -53,13 +57,37 @@ export default function AnimatedCounter({
       ? count.toFixed(decimals)
       : Math.floor(count).toLocaleString("fr-FR");
 
+  const valueClass = innovative3d
+    ? "stat-number-innovative"
+    : display3d
+      ? "heading-display-3d"
+      : "text-white";
+
+  const prefixClass = innovative3d
+    ? "stat-prefix-innovative"
+    : goldPrefix
+      ? "text-brand-gold"
+      : "text-white/80";
+
+  const suffixClass = innovative3d
+    ? "stat-number-innovative"
+    : display3d
+      ? "heading-display-3d"
+      : "text-white/70";
+
   return (
-    <span ref={ref}>
+    <span ref={ref} className="inline-flex items-baseline justify-center gap-1 [transform-style:preserve-3d]">
       {prefix && (
-        <span className={goldPrefix ? "text-brand-gold" : ""}>{prefix}</span>
+        <span className={`text-[0.55em] font-normal leading-none ${prefixClass}`}>
+          {prefix}
+        </span>
       )}
-      {display}
-      {suffix}
+      <span className={valueClass}>{display}</span>
+      {suffix && (
+        <span className={`text-[0.45em] font-normal leading-none ${suffixClass}`}>
+          {suffix}
+        </span>
+      )}
     </span>
   );
 }

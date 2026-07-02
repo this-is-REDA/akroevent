@@ -48,7 +48,7 @@ export default function Contact({ settings }: ContactProps) {
               <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
                 Parlons de Votre Projet
               </span>
-              <h2 className="mt-6 font-display text-5xl uppercase leading-none tracking-wide text-white sm:text-6xl lg:text-7xl">
+              <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Contactez
                 <br />
                 Nous

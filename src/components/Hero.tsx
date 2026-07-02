@@ -12,7 +12,7 @@ const stats = [
   { value: 15, prefix: "+", label: "ans d'expérience" },
 ];
 
-export default function Hero() {
+export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: { heroVideoSrc?: string }) {
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -34,14 +34,14 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pt-32 pb-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:pt-40">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pt-28 pb-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:pt-36">
         {/* Left — text */}
         <div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="font-display uppercase leading-[0.95] tracking-wide text-white"
+            className="font-display uppercase leading-[0.95] tracking-wide"
           >
             <span className="mb-6 flex items-center gap-4">
               <span className="h-px w-12 bg-brand-red" aria-hidden="true" />
@@ -55,33 +55,19 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="block"
+                className="heading-display-3d block"
               >
-                Unleash the
+                Unleash the{" "}
+                <span className="heading-display-3d-accent">fun,</span>
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="block text-brand-red"
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="heading-display-3d block"
               >
-                fun,
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="block"
-              >
-                boost the
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="block text-brand-red"
-              >
-                team!
+                boost the{" "}
+                <span className="heading-display-3d-accent">team!</span>
               </motion.span>
             </span>
           </motion.h1>
@@ -97,7 +83,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="max-w-md text-sm font-light italic leading-relaxed text-luxury-muted sm:text-base"
+            className="max-w-md text-sm font-normal italic leading-relaxed text-white/85 sm:text-base"
           >
             Team building corporate, séminaires, stands sur mesure et gestion déléguée au Maroc.
           </motion.p>
@@ -124,7 +110,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="relative hidden aspect-[4/5] overflow-hidden lg:block"
         >
-          <HeroVideo />
+          <HeroVideo videoSrc={heroVideoSrc} />
         </motion.div>
       </div>
 

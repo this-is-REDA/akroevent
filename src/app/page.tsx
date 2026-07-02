@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SeoJsonLd from "@/components/SeoJsonLd";
 import { getSiteSettings } from "@/lib/settings";
+import { getHeroVideoSrc } from "@/lib/hero-video";
 import { homeMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = homeMetadata;
@@ -23,7 +24,7 @@ export default async function Home() {
       <SeoJsonLd settings={settings} />
       <Header />
       <main>
-        <Hero />
+        <Hero heroVideoSrc={getHeroVideoSrc(settings)} />
         <About />
         <WhyChooseUs />
         <Services />

@@ -26,7 +26,7 @@ export default function Clients() {
             <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
               Ils Nous Font Confiance
             </span>
-            <h2 className="mt-6 font-display text-5xl uppercase tracking-wide text-white sm:text-6xl">
+            <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Nos Références
             </h2>
             <div className="mx-auto mt-8 h-px w-24 bg-white/10" />
@@ -36,7 +36,7 @@ export default function Clients() {
             </p>
           </motion.div>
 
-          {/* Logo grid — all 24 clients */}
+          {/* Logo grid — all clients */}
           <div className="grid grid-cols-2 gap-px bg-white/[0.06] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {clients.map((client, i) => (
               <motion.div

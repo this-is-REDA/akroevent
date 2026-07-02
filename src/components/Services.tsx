@@ -65,7 +65,7 @@ export default function Services() {
   return (
     <>
       <SectionDivider />
-      <section id="services" className="section-dark section-padding">
+      <section id="services" className="section-surface section-padding overflow-hidden">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -77,17 +77,17 @@ export default function Services() {
             <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
               Domaines d&apos;Activité
             </span>
-            <h2 className="mt-6 font-display text-5xl uppercase tracking-wide text-white sm:text-6xl">
+            <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Nos Services
             </h2>
             <div className="mt-8 h-px w-full max-w-xs bg-white/10" />
-            <p className="mt-6 text-base leading-relaxed text-luxury-muted">
+            <p className="mt-6 text-base leading-relaxed text-white/55">
               Une offre globale dans le domaine de l&apos;événementiel à travers
               quatre pôles de compétence majeurs.
             </p>
           </motion.div>
 
-          <div className="space-y-0">
+          <div className="border border-white/[0.08]">
             {services.map((service, i) => {
               const isOpen = activeIndex === i;
               const num = String(i + 1).padStart(2, "0");
@@ -99,34 +99,51 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className="group relative border-t border-white/[0.06]"
+                  className={`group relative border-t border-white/[0.08] bg-brand-card/40 transition-colors duration-300 first:border-t-0 ${
+                    isOpen ? "bg-brand-card" : "hover:bg-brand-card/70"
+                  }`}
                 >
                   <button
                     type="button"
                     onClick={() => setActiveIndex(isOpen ? null : i)}
                     className="relative flex w-full items-center gap-4 py-8 text-left transition-all duration-300 sm:gap-6 sm:py-10 md:gap-10 md:py-12"
                   >
-                    {/* Giant background number */}
                     <span
-                      className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 select-none font-display text-[6rem] leading-none text-white/[0.03] transition-colors duration-300 group-hover:text-brand-red/[0.06] sm:block sm:text-[8rem] lg:text-[12rem]"
+                      className={`pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 select-none font-display text-[6rem] leading-none transition-colors duration-300 sm:block sm:text-[8rem] lg:text-[12rem] ${
+                        isOpen
+                          ? "text-brand-red/[0.18]"
+                          : "text-brand-red/[0.1] group-hover:text-brand-red/[0.14]"
+                      }`}
                       aria-hidden="true"
                     >
                       {num}
                     </span>
 
-                    <span className="relative z-10 font-display text-4xl text-brand-red/60 sm:text-5xl">
+                    <span
+                      className={`relative z-10 font-display text-4xl tabular-nums transition-colors duration-300 sm:text-5xl ${
+                        isOpen ? "text-white" : "text-white/70 group-hover:text-white"
+                      }`}
+                    >
                       {num}
                     </span>
 
                     <div className="relative z-10 flex-1">
-                      <h3 className="font-display text-xl uppercase tracking-wide text-white sm:text-2xl md:text-4xl">
+                      <h3
+                        className={`font-display text-xl uppercase tracking-wide transition-colors duration-300 sm:text-2xl md:text-4xl ${
+                          isOpen ? "heading-display-3d text-white" : "text-white group-hover:text-white"
+                        }`}
+                      >
                         {service.title}
                       </h3>
-                      <p className="mt-1 text-xs font-light italic text-luxury-muted">
+                      <p
+                        className={`mt-1 text-xs font-light italic transition-colors duration-300 ${
+                          isOpen ? "text-brand-gold/90" : "text-white/45 group-hover:text-white/55"
+                        }`}
+                      >
                         {service.subtitle}
                       </p>
                       {!isOpen && (
-                        <p className="mt-3 hidden max-w-xl text-sm text-luxury-muted sm:block">
+                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/50 sm:block">
                           {service.description}
                         </p>
                       )}
@@ -135,11 +152,17 @@ export default function Services() {
                     <div className="relative z-10 flex items-center gap-3">
                       <ArrowUpRight
                         size={20}
-                        className={`hidden text-brand-red transition-transform duration-300 sm:block ${isOpen ? "rotate-90" : "group-hover:translate-x-1 group-hover:-translate-y-1"}`}
+                        className={`hidden transition-all duration-300 sm:block ${
+                          isOpen
+                            ? "rotate-90 text-brand-red"
+                            : "text-brand-red/70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-red"
+                        }`}
                       />
                       <ChevronDown
                         size={16}
-                        className={`text-luxury-muted transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        className={`transition-all duration-300 ${
+                          isOpen ? "rotate-180 text-white/80" : "text-white/40 group-hover:text-white/60"
+                        }`}
                       />
                     </div>
                   </button>
@@ -153,20 +176,20 @@ export default function Services() {
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="relative border border-white/[0.06] border-t-brand-red/30 bg-brand-card/50 p-6 sm:p-10 mb-8">
-                          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-luxury-muted">
+                        <div className="relative mb-8 border border-white/[0.08] border-t-brand-red/50 bg-brand-secondary p-6 sm:p-10">
+                          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
                             {service.description}
                           </p>
                           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {service.categories.map((cat) => (
-                              <div key={cat.label} className="border-l border-brand-red/40 pl-5">
-                                <h4 className="font-display text-sm uppercase tracking-wider text-white">
+                              <div key={cat.label} className="border-l border-brand-gold/35 pl-5">
+                                <h4 className="font-display text-sm uppercase tracking-[0.15em] text-white">
                                   {cat.label}
                                 </h4>
                                 <ul className="mt-3 space-y-2">
                                   {cat.items.map((item) => (
-                                    <li key={item} className="flex items-start gap-2 text-sm text-luxury-muted">
-                                      <span className="mt-2 h-px w-3 shrink-0 bg-brand-red/60" />
+                                    <li key={item} className="flex items-start gap-2 text-sm text-white/55">
+                                      <span className="mt-2 h-px w-3 shrink-0 bg-brand-red/50" />
                                       {item}
                                     </li>
                                   ))}
@@ -181,7 +204,6 @@ export default function Services() {
                 </motion.div>
               );
             })}
-            <div className="border-t border-white/[0.06]" />
           </div>
         </div>
       </section>

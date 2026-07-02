@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export default function HeroVideo() {
+interface HeroVideoProps {
+  videoSrc?: string;
+}
+
+export default function HeroVideo({ videoSrc = "/hero-vr.mp4" }: HeroVideoProps) {
   return (
     <div className="relative h-full w-full overflow-hidden border border-white/[0.08] bg-brand-card">
       {/* Red accent corners */}
@@ -12,6 +16,7 @@ export default function HeroVideo() {
       <span className="absolute bottom-0 right-0 z-10 h-5 w-5 border-b-2 border-r-2 border-brand-red" aria-hidden="true" />
 
       <video
+        key={videoSrc}
         autoPlay
         loop
         muted
@@ -19,7 +24,7 @@ export default function HeroVideo() {
         className="h-full w-full object-cover"
         aria-label="Expérience immersive Akro Event"
       >
-        <source src="/hero-vr.mp4" type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
 
       {/* Cinematic overlays */}

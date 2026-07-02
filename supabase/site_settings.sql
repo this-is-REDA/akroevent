@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS site_settings (
   facebook_url TEXT NOT NULL DEFAULT 'https://www.facebook.com/share/1E4yBi7wyu/',
   instagram_url TEXT NOT NULL DEFAULT 'https://www.instagram.com/akro_event/',
   linkedin_url TEXT NOT NULL DEFAULT 'https://www.linkedin.com/company/111628813/',
+  hero_video_version TEXT NOT NULL DEFAULT '',
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 

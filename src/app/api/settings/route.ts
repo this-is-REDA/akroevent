@@ -10,7 +10,7 @@ export async function GET() {
 
   const { data } = await supabase
     .from("site_settings")
-    .select("whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url")
+    .select("whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url, hero_video_version")
     .eq("id", 1)
     .single();
 

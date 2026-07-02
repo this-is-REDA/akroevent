@@ -61,11 +61,11 @@ export default function About() {
               <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
                 Qui Sommes-Nous ?
               </span>
-              <h2 className="mt-6 font-display text-5xl uppercase leading-none tracking-wide text-white sm:text-6xl lg:text-7xl">
+              <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Une Agence
                 <br />
                 Marocaine{" "}
-                <span className="text-brand-red">360°</span>
+                <span className="heading-display-3d-accent">360°</span>
               </h2>
               <div className="my-8 h-px w-full max-w-sm bg-white/10" />
               <p className="text-base leading-relaxed text-luxury-muted">
@@ -94,7 +94,7 @@ export default function About() {
                 <span className="font-display text-[5rem] leading-none text-brand-red/20 sm:text-[8rem] lg:text-[10rem]">
                   15
                 </span>
-                <p className="mt-4 font-display text-3xl uppercase tracking-wide text-white">
+                <p className="heading-display-3d mt-4 font-display text-3xl uppercase tracking-wide">
                   Ans d&apos;Expérience
                 </p>
                 <div className="my-6 h-px w-12 bg-brand-gold" />

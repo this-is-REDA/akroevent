@@ -46,7 +46,7 @@ export default function KeyNumbers() {
   return (
     <>
       <SectionDivider />
-      <section className="section-surface section-padding overflow-hidden">
+      <section className="section-surface section-padding">
         <div className="relative mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -56,35 +56,42 @@ export default function KeyNumbers() {
             className="mb-20 text-center"
           >
             <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">Performance</span>
-            <h2 className="mt-6 font-display text-5xl uppercase tracking-wide text-white sm:text-6xl">
+            <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
               Akro Event en Chiffres
             </h2>
             <div className="mx-auto mt-8 h-px w-24 bg-white/10" />
           </motion.div>
 
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="grid gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-5">
             {numbers.map((num, i) => (
               <motion.div
                 key={num.label}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative border border-white/[0.06] px-6 py-10 text-center lg:border-0"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="group relative bg-brand-secondary px-6 py-10 text-center transition-colors duration-300 hover:bg-white/[0.03] sm:px-8 sm:py-12"
               >
-                <p className="font-display text-5xl leading-none text-white sm:text-6xl lg:text-7xl xl:text-8xl">
-                  <AnimatedCounter
-                    value={num.value}
-                    prefix={num.prefix}
-                    suffix={num.suffix}
-                    goldPrefix
-                  />
-                </p>
-                <div className="mx-auto my-5 h-px w-8 bg-brand-red" />
-                <p className="font-display text-sm uppercase tracking-[0.15em] text-white">
+                <div className="stat-3d-stage mx-auto mb-5 w-fit">
+                  <div className="stat-3d-float relative px-2 py-1">
+                    <div className="stat-3d-glow" aria-hidden="true" />
+                    <div className="stat-3d-plate" aria-hidden="true" />
+                    <p className="relative z-10 font-display text-5xl leading-none tracking-tight tabular-nums sm:text-6xl lg:text-7xl">
+                      <AnimatedCounter
+                        value={num.value}
+                        prefix={num.prefix}
+                        suffix={num.suffix}
+                        goldPrefix
+                        innovative3d
+                      />
+                    </p>
+                  </div>
+                </div>
+                <div className="mx-auto my-5 h-px w-10 bg-brand-red/50 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-red" />
+                <p className="font-display text-xs uppercase tracking-[0.2em] text-white sm:text-sm">
                   {num.label}
                 </p>
-                <p className="mt-3 text-xs leading-relaxed text-luxury-muted">
+                <p className="mx-auto mt-3 max-w-[14rem] text-xs leading-relaxed text-white/60 sm:text-sm">
                   {num.description}
                 </p>
               </motion.div>

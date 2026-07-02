@@ -1,15 +1,16 @@
 import type { Client } from "@/data/clients";
-import Image from "next/image";
+import { clientBrandLogos } from "./client-brand-logos";
 
 export default function ClientLogo({ client }: { client: Client }) {
-  return (
-    <Image
-      src={client.logo}
-      alt={client.name}
-      width={120}
-      height={40}
-      className="h-9 w-auto max-w-[120px] object-contain"
-      loading="lazy"
-    />
-  );
+  const Logo = clientBrandLogos[client.id];
+
+  if (!Logo) {
+    return (
+      <span className="text-center text-[10px] font-medium uppercase tracking-wider text-luxury-muted">
+        {client.name}
+      </span>
+    );
+  }
+
+  return <Logo className="h-8 w-full max-w-[120px]" />;
 }

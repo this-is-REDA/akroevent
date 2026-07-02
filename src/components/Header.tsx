@@ -31,17 +31,17 @@ export default function Header() {
       <header
         className="fixed left-0 right-0 top-0 z-50 border-b border-black/10 bg-white transition-all duration-500"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 sm:py-5 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 sm:px-8 sm:py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
           <a
             href="#accueil"
             onClick={(e) => { e.preventDefault(); handleNavClick("#accueil"); }}
             className="group shrink-0 md:justify-self-start"
           >
-            <Logo height={40} priority />
+            <Logo height={32} priority />
           </a>
 
           {/* Center nav — desktop */}
-          <nav className="hidden items-center gap-6 md:flex md:gap-8 lg:gap-10">
+          <nav className="hidden items-center gap-5 md:flex md:gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -58,18 +58,18 @@ export default function Header() {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-            className="hidden justify-self-end border border-brand-red px-6 py-2.5 font-display text-xs uppercase tracking-[0.2em] text-brand-red transition-all duration-300 hover:bg-brand-red hover:text-white md:inline-block"
+            className="hidden justify-self-end border border-brand-red px-5 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-brand-red transition-all duration-300 hover:bg-brand-red hover:text-white md:inline-block"
           >
             Contact
           </a>
 
           <button
             type="button"
-            className="-mr-1 flex h-10 w-10 shrink-0 items-center justify-center text-brand-dark md:hidden"
+            className="-mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-brand-dark md:hidden"
             onClick={() => setMobileOpen(true)}
             aria-label="Ouvrir le menu"
           >
-            <Menu size={24} strokeWidth={1.5} />
+            <Menu size={22} strokeWidth={1.5} />
           </button>
         </div>
       </header>

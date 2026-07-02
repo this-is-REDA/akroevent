@@ -6,6 +6,7 @@ export interface SiteSettings {
   facebook_url: string;
   instagram_url: string;
   linkedin_url: string;
+  hero_video_version: string;
   updated_at: string;
 }
 
@@ -18,4 +19,5 @@ export const DEFAULT_SETTINGS: SiteSettingsPublic = {
   facebook_url: "https://www.facebook.com/share/1E4yBi7wyu/",
   instagram_url: "https://www.instagram.com/akro_event/",
   linkedin_url: "https://www.linkedin.com/company/111628813/",
+  hero_video_version: "",
 };
