@@ -36,7 +36,7 @@ export default function Contact({ settings }: ContactProps) {
   return (
     <>
       <SectionDivider />
-      <section id="contact" className="section-dark section-padding">
+      <section id="contact" className="section-surface section-padding">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
             <motion.div
@@ -45,13 +45,15 @@ export default function Contact({ settings }: ContactProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="section-label">Parlons de Votre Projet</span>
+              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
+                Parlons de Votre Projet
+              </span>
               <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Contactez
                 <br />
                 Nous
               </h2>
-              <div className="section-divider my-8 w-full max-w-sm" />
+              <div className="my-8 h-px w-full max-w-sm bg-white/10" />
               <p className="max-w-md text-base font-light italic leading-relaxed text-luxury-muted">
                 Votre événement sera une réussite assurée, pas qu&apos;une simple
                 prestation ! Contactez notre équipe pour discuter de vos besoins
@@ -67,14 +69,14 @@ export default function Contact({ settings }: ContactProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="group flex items-start gap-5 border-b border-black/[0.08] pb-8 transition-colors"
+                    className="group flex items-start gap-5 border-b border-white/[0.06] pb-8 transition-colors"
                   >
                     <item.icon size={18} strokeWidth={1} className="mt-1 shrink-0 text-brand-red" />
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
                         {item.label}
                       </p>
-                      <p className="mt-1 break-words font-display text-lg uppercase tracking-wide text-brand-ink transition-colors group-hover:text-brand-red sm:text-xl">
+                      <p className="mt-1 break-words font-display text-lg uppercase tracking-wide text-white transition-colors group-hover:text-brand-red sm:text-xl">
                         {item.value}
                       </p>
                     </div>
@@ -94,7 +96,7 @@ export default function Contact({ settings }: ContactProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="flex h-11 w-11 items-center justify-center border border-black/10 bg-brand-card text-luxury-muted shadow-card transition-all duration-300 hover:border-brand-red hover:text-brand-red"
+                      className="flex h-11 w-11 items-center justify-center border border-white/[0.08] text-luxury-muted transition-all duration-300 hover:border-brand-red hover:text-brand-red"
                     >
                       <social.icon size={18} strokeWidth={1.5} />
                     </a>
@@ -120,11 +122,11 @@ export default function Contact({ settings }: ContactProps) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group mt-20 flex items-center justify-center border border-black/10 bg-brand-card py-14 shadow-card transition-colors hover:border-brand-red/30"
+            className="group mt-20 flex items-center justify-center border border-white/[0.06] py-14 transition-colors hover:border-brand-red/30"
           >
             <div className="text-center">
               <MapPin className="mx-auto text-brand-red" size={24} strokeWidth={1} />
-              <p className="mt-4 font-display text-2xl uppercase tracking-wide text-brand-ink transition-colors group-hover:text-brand-red">
+              <p className="mt-4 font-display text-2xl uppercase tracking-wide text-white transition-colors group-hover:text-brand-red">
                 Maroc
               </p>
               <p className="mt-2 text-sm text-luxury-muted">

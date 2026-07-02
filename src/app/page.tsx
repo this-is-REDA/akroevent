@@ -24,7 +24,7 @@ export default async function Home() {
       <SeoJsonLd settings={settings} />
       <Header />
       <main>
-        <Hero heroVideoSrc={getHeroVideoSrc(settings)} email={settings.email} />
+        <Hero heroVideoSrc={getHeroVideoSrc(settings)} />
         <About />
         <WhyChooseUs />
         <Services />

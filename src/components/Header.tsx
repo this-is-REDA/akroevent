@@ -82,9 +82,9 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-white md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col bg-brand-dark md:hidden"
           >
-            <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <Logo height={32} />
               <button
                 type="button"
@@ -92,7 +92,7 @@ export default function Header() {
                 aria-label="Fermer le menu"
                 className="flex h-10 w-10 items-center justify-center"
               >
-                <X size={24} strokeWidth={1.5} className="text-brand-ink" />
+                <X size={24} strokeWidth={1.5} className="text-white" />
               </button>
             </div>
 
@@ -105,7 +105,7 @@ export default function Header() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.08 }}
                   onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                  className="border-b border-black/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-brand-ink transition-colors hover:text-brand-red sm:py-6 sm:text-4xl"
+                  className="border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl"
                 >
                   {link.label}
                 </motion.a>

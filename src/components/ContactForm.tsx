@@ -50,7 +50,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 lg:p-10">
-      <h3 className="font-display text-2xl uppercase tracking-wide text-brand-ink">
+      <h3 className="font-display text-2xl uppercase tracking-wide text-white">
         Demande de Devis
       </h3>
       <p className="mt-2 text-sm text-luxury-muted">
@@ -137,7 +137,7 @@ export default function ContactForm() {
           disabled={loading}
           whileHover={{ scale: loading ? 1 : 1.02 }}
           whileTap={{ scale: loading ? 1 : 0.98 }}
-          className="btn-primary flex w-full items-center justify-center gap-2 disabled:opacity-60"
+          className="flex w-full items-center justify-center gap-2 bg-brand-red py-4 font-display text-sm uppercase tracking-[0.2em] text-white transition-colors hover:bg-red-700 disabled:opacity-60"
         >
           {loading ? (
             <>

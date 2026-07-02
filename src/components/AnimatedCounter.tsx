@@ -61,19 +61,19 @@ export default function AnimatedCounter({
     ? "stat-number-innovative"
     : display3d
       ? "heading-display-3d"
-      : "text-brand-ink";
+      : "text-white";
 
   const prefixClass = innovative3d
     ? "stat-prefix-innovative"
     : goldPrefix
       ? "text-brand-gold"
-      : "text-brand-ink/80";
+      : "text-white/80";
 
   const suffixClass = innovative3d
     ? "stat-number-innovative"
     : display3d
       ? "heading-display-3d"
-      : "text-brand-ink/70";
+      : "text-white/70";
 
   return (
     <span ref={ref} className="inline-flex items-baseline justify-center gap-1 [transform-style:preserve-3d]">

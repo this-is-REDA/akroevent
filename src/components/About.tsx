@@ -44,7 +44,7 @@ export default function About() {
       <section id="apropos" className="section-dark section-padding overflow-hidden">
         {/* Decorative background number */}
         <div
-          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none font-display text-[12rem] leading-none text-black/[0.03] sm:text-[20rem] lg:text-[30rem]"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 select-none font-display text-[12rem] leading-none text-white/[0.02] sm:text-[20rem] lg:text-[30rem]"
           aria-hidden="true"
         >
           15
@@ -58,14 +58,16 @@ export default function About() {
             className="grid items-start gap-16 lg:grid-cols-2 lg:gap-24"
           >
             <motion.div custom={0} variants={fadeUp}>
-              <span className="section-label">Qui Sommes-Nous ?</span>
+              <span className="text-xs uppercase tracking-[0.3em] text-brand-gold">
+                Qui Sommes-Nous ?
+              </span>
               <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
                 Une Agence
                 <br />
                 Marocaine{" "}
                 <span className="heading-display-3d-accent">360°</span>
               </h2>
-              <div className="section-divider my-8 w-full max-w-sm" />
+              <div className="my-8 h-px w-full max-w-sm bg-white/10" />
               <p className="text-base leading-relaxed text-luxury-muted">
                 Akro Event est une agence marocaine 360°, spécialisée dans
                 l&apos;événementiel, la communication, la conception de stands, le
@@ -73,7 +75,7 @@ export default function About() {
               </p>
               <p className="mt-5 text-base leading-relaxed text-luxury-muted">
                 Forte de{" "}
-                <strong className="font-medium text-brand-ink">15 années d&apos;expertise</strong>,
+                <strong className="font-medium text-white">15 années d&apos;expertise</strong>,
                 notre agence met son savoir-faire au service de ses clients pour
                 concevoir et déployer des solutions clés en main, parfaitement
                 alignées avec leurs objectifs et leurs exigences.
@@ -118,13 +120,13 @@ export default function About() {
               >
                 <div className="absolute left-0 top-0 h-full w-1 bg-brand-red/0 transition-colors duration-300 group-hover:bg-brand-red" />
                 <pillar.icon size={22} strokeWidth={1} className="text-brand-red" />
-                <h3 className="mt-6 font-display text-2xl uppercase tracking-wide text-brand-ink">
+                <h3 className="mt-6 font-display text-2xl uppercase tracking-wide text-white">
                   {pillar.title}
                 </h3>
                 <p className="mt-1 text-xs font-light italic text-brand-gold">
                   {pillar.subtitle}
                 </p>
-                <div className="section-divider my-4 w-8" />
+                <div className="my-4 h-px w-8 bg-white/10" />
                 <p className="text-sm leading-relaxed text-luxury-muted">
                   {pillar.description}
                 </p>

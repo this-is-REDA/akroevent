@@ -12,32 +12,26 @@ const config: Config = {
         brand: {
           red: "#E8192C",
           gold: "#C9A84C",
-          dark: "#FAF9F6",
-          secondary: "#F0EFEA",
-          card: "#FFFFFF",
-          ink: "#1A1A1A",
+          dark: "#0A0A0A",
+          secondary: "#111111",
+          card: "#161616",
         },
         luxury: {
-          bg: "#FAF9F6",
-          surface: "#F0EFEA",
-          card: "#FFFFFF",
-          border: "rgba(0,0,0,0.08)",
-          muted: "#5E5E5E",
+          bg: "#0A0A0A",
+          surface: "#111111",
+          card: "#161616",
+          border: "rgba(255,255,255,0.06)",
+          muted: "#A0A0A0",
         },
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-bebas)", "system-ui", "sans-serif"],
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
       },
       borderRadius: {
         DEFAULT: "0px",
         sm: "2px",
         md: "4px",
-      },
-      boxShadow: {
-        card: "0 4px 24px rgba(0, 0, 0, 0.06)",
-        "card-hover": "0 8px 32px rgba(0, 0, 0, 0.1)",
       },
       animation: {
         marquee: "marquee 40s linear infinite",
@@ -64,7 +58,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        grid: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
+        grid: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
       },
       backgroundSize: {
         grid: "60px 60px",

@@ -4,39 +4,17 @@ import { motion } from "framer-motion";
 
 interface HeroVideoProps {
   videoSrc?: string;
-  bleed?: boolean;
 }
 
-export default function HeroVideo({ videoSrc = "/hero-vr.mp4", bleed = false }: HeroVideoProps) {
-  if (bleed) {
-    return (
-      <div className="relative h-full w-full overflow-hidden bg-brand-secondary">
-        <video
-          key={videoSrc}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
-          aria-label="Expérience immersive Akro Event"
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[28%] min-w-[6rem] max-w-[12rem]"
-          style={{
-            background:
-              "linear-gradient(to right, #FAF9F6 0%, #FAF9F6 35%, rgba(250, 249, 246, 0.85) 55%, transparent 100%)",
-          }}
-          aria-hidden="true"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-      </div>
-    );
-  }
-
+export default function HeroVideo({ videoSrc = "/hero-vr.mp4" }: HeroVideoProps) {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-brand-secondary">
+    <div className="relative h-full w-full overflow-hidden border border-white/[0.08] bg-brand-card">
+      {/* Red accent corners */}
+      <span className="absolute left-0 top-0 z-10 h-5 w-5 border-l-2 border-t-2 border-brand-red" aria-hidden="true" />
+      <span className="absolute right-0 top-0 z-10 h-5 w-5 border-r-2 border-t-2 border-brand-red" aria-hidden="true" />
+      <span className="absolute bottom-0 left-0 z-10 h-5 w-5 border-b-2 border-l-2 border-brand-red" aria-hidden="true" />
+      <span className="absolute bottom-0 right-0 z-10 h-5 w-5 border-b-2 border-r-2 border-brand-red" aria-hidden="true" />
+
       <video
         key={videoSrc}
         autoPlay
@@ -48,7 +26,33 @@ export default function HeroVideo({ videoSrc = "/hero-vr.mp4", bleed = false }: 
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+
+      {/* Cinematic overlays */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-brand-dark/30" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-dark/40 via-transparent to-brand-dark/40" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(232,25,44,0.35) 100%)",
+        }}
+      />
+
+      {/* Live badge */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="absolute bottom-5 left-5 flex items-center gap-2 border border-white/[0.08] bg-brand-dark/70 px-3 py-1.5 backdrop-blur-sm"
+      >
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-red opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-red" />
+        </span>
+        <span className="text-[9px] uppercase tracking-[0.2em] text-white/70">
+          Expérience immersive
+        </span>
+      </motion.div>
     </div>
   );
 }
