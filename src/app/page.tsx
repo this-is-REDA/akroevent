@@ -4,6 +4,8 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Services from "@/components/Services";
+import EventShowcase from "@/components/EventShowcase";
+import EventBenefits from "@/components/EventBenefits";
 import KeyNumbers from "@/components/KeyNumbers";
 import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
@@ -29,8 +31,10 @@ export default async function Home() {
         <Hero heroVideoSrc={getHeroVideoSrc(settings)} />
         <MarqueeBand />
         <About />
+        <EventShowcase />
         <WhyChooseUs />
         <Services />
+        <EventBenefits />
         <KeyNumbers />
         <Clients />
         <CtaBanner />
