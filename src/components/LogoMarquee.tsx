@@ -3,19 +3,29 @@
 import Image from "next/image";
 import { clients } from "@/data/clients";
 import type { ClientLogoPublic } from "@/types/client-logos";
-import { normalizeLogoSrc } from "@/lib/logo-src";
+import { resolveLogoSrc } from "@/lib/logo-src";
 
 const defaultLogos: ClientLogoPublic[] = clients.map((client) => ({
   id: client.id,
   name: client.name,
-  src: normalizeLogoSrc(client.logo),
+  src: resolveLogoSrc(client.id, client.name, client.logo),
 }));
 
-/** Certains logos SVG/wordmarks paraissent plus petits — on les agrandit légèrement. */
-const LOGO_SCALE: Record<string, string> = {
-  nestle: "scale-[3.2]",
-  renault: "scale-[1.25]",
-};
+const LOGO_SCALE_RULES: { test: RegExp; scale: string }[] = [
+  { test: /attijari|tijari|wafa/i, scale: "scale-[1.55]" },
+  { test: /\bocp\b/i, scale: "scale-[1.15]" },
+  { test: /mazagan/i, scale: "scale-[1.7]" },
+  { test: /renault/i, scale: "scale-[1.25]" },
+];
+
+function getLogoScale(id: string, name: string): string {
+  const haystack = `${id} ${name}`;
+  return LOGO_SCALE_RULES.find((rule) => rule.test.test(haystack))?.scale ?? "";
+}
+
+function isNestleLogo(id: string, name: string): boolean {
+  return /nestle|nestlé/i.test(`${id} ${name}`);
+}
 
 interface LogoMarqueeProps {
   logos?: ClientLogoPublic[];
@@ -24,7 +34,7 @@ interface LogoMarqueeProps {
 export default function LogoMarquee({ logos }: LogoMarqueeProps) {
   const list = (logos && logos.length > 0 ? logos : defaultLogos).map((logo) => ({
     ...logo,
-    src: normalizeLogoSrc(logo.src),
+    src: resolveLogoSrc(logo.id, logo.name, logo.src),
   }));
   const track = [...list, ...list];
 
@@ -35,25 +45,35 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
 
       <div className="animate-marquee-clients flex w-max gap-12">
         {track.map((logo, i) => {
-          const scale = LOGO_SCALE[logo.id] ?? LOGO_SCALE[logo.name.toLowerCase()] ?? "";
+          const nestle = isNestleLogo(logo.id, logo.name);
+          const scale = nestle ? "" : getLogoScale(logo.id, logo.name);
           const isSvg = logo.src.endsWith(".svg");
 
           return (
             <div
               key={`${logo.id}-${i}`}
-              className="flex h-20 w-44 shrink-0 items-center justify-center border border-white/25 bg-white px-3 backdrop-blur-sm sm:h-24 sm:w-52 sm:px-4"
+              className={
+                nestle
+                  ? "relative flex h-20 w-44 shrink-0 items-center justify-center border border-white/25 bg-white px-1.5 sm:h-24 sm:w-52 sm:px-2"
+                  : "flex h-20 w-44 shrink-0 items-center justify-center overflow-hidden border border-white/25 bg-white px-3 sm:h-24 sm:w-52 sm:px-4"
+              }
               title={logo.name}
             >
               <div
-                className={`relative h-12 w-full max-w-[150px] sm:h-14 sm:max-w-[170px] ${scale}`}
+                className={
+                  nestle
+                    ? "relative h-[92%] w-[98%]"
+                    : `relative h-14 w-full max-w-[170px] sm:h-16 sm:max-w-[190px] ${scale}`
+                }
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
                   fill
-                  sizes="170px"
-                  className="object-contain"
+                  sizes={nestle ? "320px" : "190px"}
+                  className="object-contain object-center"
                   unoptimized={isSvg}
+                  priority={nestle}
                 />
               </div>
             </div>
