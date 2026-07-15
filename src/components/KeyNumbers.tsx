@@ -17,9 +17,9 @@ export default function KeyNumbers() {
   return (
     <>
       <SectionDivider />
-      <section className="relative overflow-hidden bg-brand-dark py-20 sm:py-24">
+      <section className="section-dark relative overflow-hidden py-20 sm:py-24">
         <AmbientOrbs />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-red/5 via-transparent to-brand-gold/5" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-red/15 via-transparent to-brand-gold/10" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <motion.div

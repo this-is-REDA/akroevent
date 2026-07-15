@@ -34,7 +34,7 @@ export default function HeroVideo({ videoSrc = "/hero-vr.mp4" }: HeroVideoProps)
         className="pointer-events-none absolute inset-0 opacity-20"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 40%, rgba(232,25,44,0.35) 100%)",
+            "radial-gradient(ellipse at center, transparent 40%, rgba(255,34,56,0.4) 100%)",
         }}
       />
 

@@ -12,20 +12,29 @@ export default function Preloader() {
 
     const interval = setInterval(() => {
       setProgress((p) => {
-        if (p >= 100) {
+        const next = p + 35 + Math.random() * 25;
+        if (next >= 100) {
           clearInterval(interval);
           setTimeout(() => {
             setDone(true);
             document.body.style.overflow = "";
-          }, 400);
+          }, 120);
           return 100;
         }
-        return p + Math.random() * 18 + 8;
+        return next;
       });
-    }, 80);
+    }, 50);
+
+    const failsafe = setTimeout(() => {
+      clearInterval(interval);
+      setProgress(100);
+      setDone(true);
+      document.body.style.overflow = "";
+    }, 600);
 
     return () => {
       clearInterval(interval);
+      clearTimeout(failsafe);
       document.body.style.overflow = "";
     };
   }, []);
@@ -35,41 +44,24 @@ export default function Preloader() {
       {!done && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-brand-dark"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(232,25,44,0.15)_0%,transparent_60%)]" />
-          <div className="grid-premium absolute inset-0 opacity-20" aria-hidden="true" />
-
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="relative font-display text-6xl uppercase tracking-widest text-white sm:text-8xl"
+            className="relative font-display text-5xl uppercase tracking-widest text-white sm:text-7xl"
           >
-            Akro<span className="text-gradient-fire"> Event</span>
+            Akro<span className="text-brand-red"> Event</span>
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="relative mt-3 text-[10px] uppercase tracking-[0.4em] text-luxury-muted"
-          >
-            Événementiel · Maroc
-          </motion.p>
-
-          <div className="relative mt-12 h-px w-48 overflow-hidden bg-white/10 sm:w-64">
+          <div className="relative mt-8 h-px w-40 overflow-hidden bg-white/10 sm:w-52">
             <motion.div
-              className="h-full bg-gradient-to-r from-brand-red via-brand-gold to-brand-red"
+              className="h-full bg-brand-red"
               style={{ width: `${Math.min(progress, 100)}%` }}
-              transition={{ ease: "easeOut" }}
             />
           </div>
-
-          <p className="relative mt-4 font-display text-2xl tabular-nums text-brand-red">
-            {Math.min(Math.round(progress), 100)}%
-          </p>
         </motion.div>
       )}
     </AnimatePresence>

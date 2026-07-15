@@ -1,35 +1,11 @@
-export const landingShowcase = [
-  {
-    src: "/images/landing/team-building.jpg",
-    alt: "Équipe en activité de team building corporate",
-    caption: "Team Building",
-  },
-  {
-    src: "/images/landing/corporate-event.jpg",
-    alt: "Conférence et événement corporate",
-    caption: "Événements Corporate",
-  },
-  {
-    src: "/images/landing/exhibition-stand.jpg",
-    alt: "Stand d'exposition personnalisé sur salon professionnel",
-    caption: "Stands Personnalisés",
-  },
-  {
-    src: "/images/landing/gestion-deleguee.jpg",
-    alt: "Complexe sportif et gestion déléguée",
-    caption: "Gestion Déléguée",
-  },
-  {
-    src: "/images/landing/seminar-workshop.jpg",
-    alt: "Séminaire et atelier en entreprise",
-    caption: "Séminaires",
-  },
-  {
-    src: "/images/landing/gala-evenement.jpg",
-    alt: "Soirée de gala et événement festif",
-    caption: "Galas & Soirées",
-  },
-] as const;
+import { universItems } from "@/data/univers";
+
+export const landingShowcase = universItems.map((item) => ({
+  slug: item.slug,
+  src: item.src,
+  alt: item.alt,
+  caption: item.caption,
+}));
 
 export const landingBenefitsCollage = [
   {

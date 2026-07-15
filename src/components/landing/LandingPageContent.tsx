@@ -12,6 +12,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import AmbientOrbs from "@/components/AmbientOrbs";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LogoMarquee from "@/components/LogoMarquee";
+import type { ClientLogoPublic } from "@/types/client-logos";
 import EventShowcase from "@/components/EventShowcase";
 import EventServicesGrid from "@/components/EventServicesGrid";
 import EventBenefits from "@/components/EventBenefits";
@@ -35,11 +36,13 @@ const highlights = [
 interface LandingPageContentProps {
   settings: SiteSettingsPublic;
   heroVideoSrc: string;
+  logos?: ClientLogoPublic[];
 }
 
 export default function LandingPageContent({
   settings,
   heroVideoSrc,
+  logos,
 }: LandingPageContentProps) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -101,7 +104,7 @@ export default function LandingPageContent({
           <div className="cinematic-overlay absolute inset-0 z-[1]" />
           <div className="absolute inset-0 z-[2] bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/40" />
           <div className="absolute inset-0 z-[2] bg-gradient-to-t from-brand-dark via-brand-dark/50 to-brand-dark/80" />
-          <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_20%_50%,rgba(232,25,44,0.2)_0%,transparent_55%)]" />
+          <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_20%_50%,rgba(255,34,56,0.26)_0%,transparent_55%)]" />
 
           <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pb-20 pt-28 sm:px-8 lg:px-12">
             <motion.p
@@ -227,7 +230,7 @@ export default function LandingPageContent({
               </h2>
               <div className="section-divider mx-auto mt-6 max-w-xs" />
             </motion.div>
-            <LogoMarquee />
+            <LogoMarquee logos={logos} />
           </div>
         </section>
 
@@ -359,9 +362,14 @@ export default function LandingPageContent({
           <Link href="/">
             <Logo height={28} />
           </Link>
-          <p className="text-center text-xs text-luxury-muted">
-            &copy; {new Date().getFullYear()} Akro Event. Tous droits réservés.
-          </p>
+          <div className="text-center">
+            <p className="text-xs text-luxury-muted">
+              &copy; {new Date().getFullYear()} Akro Event. Tous droits réservés.
+            </p>
+            <p className="mt-2 text-[10px] tracking-[0.12em] text-luxury-muted/75">
+              Designed by VSN Studios
+            </p>
+          </div>
           <Link
             href="/"
             className="text-[10px] uppercase tracking-[0.2em] text-brand-ink/70 transition-colors hover:text-brand-red"

@@ -19,20 +19,57 @@ export default function LoginForm() {
     setLoading(true);
     setError("");
 
-    const supabase = createClient();
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    if (authError) {
-      setError("Email ou mot de passe incorrect.");
+      if (!supabaseUrl || !supabaseKey) {
+        setError("Configuration Supabase manquante (.env.local).");
+        return;
+      }
+
+      const supabase = createClient();
+      const loginPromise = supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      });
+
+      const timeoutPromise = new Promise<{ error: { message: string } }>((resolve) => {
+        setTimeout(
+          () =>
+            resolve({
+              error: {
+                message:
+                  "Délai dépassé. Vérifiez votre connexion et les clés Supabase dans .env.local.",
+              },
+            }),
+          12000
+        );
+      });
+
+      const { error: authError } = await Promise.race([loginPromise, timeoutPromise]);
+
+      if (authError) {
+        const msg = authError.message.toLowerCase();
+        if (msg.includes("invalid") || msg.includes("credentials")) {
+          setError("Email ou mot de passe incorrect.");
+        } else if (msg.includes("délai") || msg.includes("timeout") || msg.includes("failed to fetch")) {
+          setError(authError.message);
+        } else {
+          setError(authError.message || "Connexion impossible. Réessayez.");
+        }
+        return;
+      }
+
+      router.push("/admin");
+      router.refresh();
+    } catch {
+      setError(
+        "Impossible de joindre Supabase. Vérifiez NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY."
+      );
+    } finally {
       setLoading(false);
-      return;
     }
-
-    router.push("/admin");
-    router.refresh();
   };
 
   return (
@@ -81,7 +118,7 @@ export default function LoginForm() {
               Espace Admin
             </h1>
             <p className="mt-2 text-center text-sm text-luxury-muted">
-              Connectez-vous pour gérer les devis
+              Connectez-vous pour gérer les devis, la galerie et les paramètres du site
             </p>
           </div>
 

@@ -7,7 +7,7 @@ import Services from "@/components/Services";
 import EventShowcase from "@/components/EventShowcase";
 import EventBenefits from "@/components/EventBenefits";
 import KeyNumbers from "@/components/KeyNumbers";
-import Clients from "@/components/Clients";
+import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -16,12 +16,16 @@ import CtaBanner from "@/components/CtaBanner";
 import MarqueeBand from "@/components/MarqueeBand";
 import { getSiteSettings } from "@/lib/settings";
 import { getHeroVideoSrc } from "@/lib/hero-video";
+import { getClientLogos } from "@/lib/client-logos";
 import { homeMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = homeMetadata;
 
 export default async function Home() {
-  const settings = await getSiteSettings();
+  const [settings, clientLogos] = await Promise.all([
+    getSiteSettings(),
+    getClientLogos(),
+  ]);
 
   return (
     <>
@@ -30,13 +34,13 @@ export default async function Home() {
       <main>
         <Hero heroVideoSrc={getHeroVideoSrc(settings)} />
         <MarqueeBand />
-        <About />
+        <About logos={clientLogos} />
         <EventShowcase />
         <WhyChooseUs />
         <Services />
         <EventBenefits />
         <KeyNumbers />
-        <Clients />
+        <Faq />
         <CtaBanner />
         <Contact settings={settings} />
       </main>

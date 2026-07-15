@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import SectionDivider from "./SectionDivider";
 import AmbientOrbs from "./AmbientOrbs";
 import LogoMarquee from "./LogoMarquee";
+import type { ClientLogoPublic } from "@/types/client-logos";
 
-export default function Clients() {
+export default function Clients({ logos }: { logos?: ClientLogoPublic[] }) {
   return (
     <>
       <SectionDivider />
@@ -32,7 +33,7 @@ export default function Clients() {
             </p>
           </motion.div>
 
-          <LogoMarquee />
+          <LogoMarquee logos={logos} />
         </div>
       </section>
     </>

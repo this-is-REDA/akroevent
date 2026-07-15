@@ -92,7 +92,7 @@ export default function EventBenefits() {
                       <h3 className="font-display text-xl uppercase tracking-wide text-white">
                         {benefit.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/50">
+                      <p className="mt-2 text-sm leading-relaxed text-white/65">
                         {benefit.text}
                       </p>
                     </div>

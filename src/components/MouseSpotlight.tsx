@@ -33,7 +33,7 @@ export default function MouseSpotlight() {
           width: 600,
           height: 600,
           background:
-            "radial-gradient(circle, rgba(232,25,44,0.08) 0%, rgba(201,168,76,0.04) 30%, transparent 65%)",
+            "radial-gradient(circle, rgba(255,34,56,0.1) 0%, rgba(232,197,71,0.05) 30%, transparent 65%)",
         }}
       />
     </motion.div>

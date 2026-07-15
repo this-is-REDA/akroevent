@@ -83,7 +83,7 @@ export default function Services() {
               Nos Services
             </h2>
             <div className="section-divider mt-8 w-full max-w-xs" />
-            <p className="mt-6 text-base leading-relaxed text-white/55">
+            <p className="mt-6 text-base leading-relaxed text-white/70">
               Une offre globale dans le domaine de l&apos;événementiel à travers
               quatre pôles de compétence majeurs.
             </p>
@@ -141,13 +141,13 @@ export default function Services() {
                       </h3>
                       <p
                         className={`mt-1 text-xs font-light italic transition-colors duration-300 ${
-                          isOpen ? "text-brand-gold/90" : "text-white/45 group-hover:text-white/55"
+                          isOpen ? "text-brand-gold/90" : "text-white/45 group-hover:text-white/70"
                         }`}
                       >
                         {service.subtitle}
                       </p>
                       {!isOpen && (
-                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/50 sm:block">
+                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/65 sm:block">
                           {service.description}
                         </p>
                       )}
@@ -192,7 +192,7 @@ export default function Services() {
                                 </h4>
                                 <ul className="mt-3 space-y-2">
                                   {cat.items.map((item) => (
-                                    <li key={item} className="flex items-start gap-2 text-sm text-white/55">
+                                    <li key={item} className="flex items-start gap-2 text-sm text-white/70">
                                       <span className="mt-2 h-px w-3 shrink-0 bg-brand-red/50" />
                                       {item}
                                     </li>

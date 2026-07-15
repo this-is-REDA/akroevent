@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LandingPageContent from "@/components/landing/LandingPageContent";
 import { getSiteSettings } from "@/lib/settings";
 import { getHeroVideoSrc } from "@/lib/hero-video";
+import { getClientLogos } from "@/lib/client-logos";
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, OG_IMAGE_PATH } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -23,12 +24,16 @@ export const metadata: Metadata = {
 };
 
 export default async function LindingPage() {
-  const settings = await getSiteSettings();
+  const [settings, logos] = await Promise.all([
+    getSiteSettings(),
+    getClientLogos(),
+  ]);
 
   return (
     <LandingPageContent
       settings={settings}
       heroVideoSrc={getHeroVideoSrc(settings)}
+      logos={logos}
     />
   );
 }

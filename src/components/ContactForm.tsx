@@ -50,10 +50,10 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 lg:p-10">
-      <h3 className="font-display text-2xl uppercase tracking-wide text-white">
+      <h3 className="font-display text-3xl uppercase tracking-wide text-white sm:text-[2rem]">
         Demande de Devis
       </h3>
-      <p className="mt-2 text-sm text-luxury-muted">
+      <p className="mt-2 text-base text-luxury-muted">
         Remplissez le formulaire et nous vous recontacterons rapidement.
       </p>
 
@@ -82,13 +82,13 @@ export default function ContactForm() {
       <div className="mt-10 space-y-6">
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="name" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+            <label htmlFor="name" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
               Nom complet *
             </label>
             <input id="name" name="name" type="text" required placeholder="Votre nom" className="input-underline" />
           </div>
           <div>
-            <label htmlFor="company" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+            <label htmlFor="company" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
               Entreprise
             </label>
             <input id="company" name="company" type="text" placeholder="Votre entreprise" className="input-underline" />
@@ -96,20 +96,20 @@ export default function ContactForm() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="email" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+            <label htmlFor="email" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
               Email *
             </label>
             <input id="email" name="email" type="email" required placeholder="votre@email.com" className="input-underline" />
           </div>
           <div>
-            <label htmlFor="phone" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+            <label htmlFor="phone" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
               Téléphone
             </label>
             <input id="phone" name="phone" type="tel" placeholder="+212 6 XX XX XX XX" className="input-underline" />
           </div>
         </div>
         <div>
-          <label htmlFor="service" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+          <label htmlFor="service" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
             Service souhaité *
           </label>
           <select id="service" name="service" required className="input-underline cursor-pointer" defaultValue="">
@@ -121,7 +121,7 @@ export default function ContactForm() {
           </select>
         </div>
         <div>
-          <label htmlFor="message" className="mb-1 block text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+          <label htmlFor="message" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
             Message
           </label>
           <textarea

@@ -6,8 +6,6 @@ import AnimatedCounter from "./AnimatedCounter";
 import ParticleBackground from "./ParticleBackground";
 import AmbientOrbs from "./AmbientOrbs";
 import SplitText from "./SplitText";
-import Scanlines from "./Scanlines";
-import FloatingShapes from "./FloatingShapes";
 import GlitchText from "./GlitchText";
 import MagneticButton from "./MagneticButton";
 
@@ -56,6 +54,7 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
           loop
           muted
           playsInline
+          preload="metadata"
           className="h-full w-full object-cover"
           aria-hidden="true"
         >
@@ -67,7 +66,8 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
       <div className="absolute inset-0 z-[2] bg-gradient-to-r from-brand-dark via-brand-dark/92 to-brand-dark/25" />
       <div className="absolute inset-0 z-[2] bg-gradient-to-t from-brand-dark via-brand-dark/40 to-brand-dark" />
       <div className="absolute inset-x-0 top-0 z-[2] h-24 bg-brand-dark sm:h-28" />
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_25%_50%,rgba(232,25,44,0.18)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_20%_50%,rgba(255,23,68,0.42)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_80%_80%,rgba(255,213,79,0.12)_0%,transparent_50%)]" />
 
       {/* Giant watermark */}
       <motion.div
@@ -83,10 +83,8 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
       </motion.div>
 
       <AmbientOrbs variant="hero" />
-      <FloatingShapes />
-      <div className="grid-premium pointer-events-none absolute inset-0 z-[4] opacity-50" aria-hidden="true" />
+      <div className="grid-premium pointer-events-none absolute inset-0 z-[4] opacity-30" aria-hidden="true" />
       <ParticleBackground />
-      <Scanlines />
 
       <motion.div
         className="relative z-10 flex min-h-screen flex-col justify-center px-5 pt-[3.625rem] pb-8 sm:px-8 sm:pt-[3.75rem] lg:px-12 [@media(min-height:741px)]:pb-36"
@@ -106,21 +104,21 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
             <span className="section-label">Agence Événementielle · Maroc</span>
           </motion.div>
 
-          <h1 className="hero-title-font mb-8 flex max-w-3xl flex-col gap-6 font-brittany normal-case leading-[1.3] tracking-normal sm:mb-10 sm:gap-8 text-[clamp(1.75rem,5vw,3.75rem)]">
+          <h1 className="hero-title-font mb-8 flex max-w-4xl flex-col gap-7 font-brittany normal-case leading-[1.25] tracking-normal sm:mb-10 sm:gap-9 text-[clamp(2.1rem,6vw,4.5rem)]">
             <span className="block">
-              <SplitText text="Unleash the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.2} />
-              <GlitchText text="fun," className="font-brittany text-gradient-fire" delay={0.55} />
+              <SplitText text="Unleash the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.05} />
+              <GlitchText text="fun," className="font-brittany text-gradient-fire" delay={0.2} />
             </span>
             <span className="block">
-              <SplitText text="boost the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.75} />
-              <GlitchText text="team!" className="font-brittany text-gradient-fire" delay={1.05} />
+              <SplitText text="boost the " className="font-brittany text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" delay={0.3} />
+              <GlitchText text="team!" className="font-brittany text-gradient-fire" delay={0.45} />
             </span>
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="max-w-lg border-l-2 border-brand-red pl-4 text-sm font-light italic leading-relaxed text-white/85 sm:pl-5 sm:text-base lg:text-lg"
           >
             Team building corporate, séminaires, stands sur mesure et gestion déléguée —
@@ -128,9 +126,9 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
+            transition={{ duration: 0.45, delay: 0.6 }}
             className="mt-4 flex flex-wrap gap-3 sm:mt-5 sm:gap-4"
           >
             <MagneticButton
@@ -150,18 +148,18 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 80 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ delay: 0.7, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="absolute bottom-4 left-4 right-4 z-20 sm:bottom-6 sm:left-8 sm:right-8 lg:left-12 lg:right-12 [@media(max-height:740px)]:hidden"
       >
         <div className="glass-card stats-strip mx-auto grid max-w-7xl grid-cols-2 sm:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8 + i * 0.12 }}
+              transition={{ delay: 0.8 + i * 0.05 }}
               whileHover={{ scale: 1.03 }}
               className="group relative px-3 py-4 text-center sm:px-5 sm:py-5"
             >

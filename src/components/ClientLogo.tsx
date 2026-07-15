@@ -1,7 +1,15 @@
 import type { Client } from "@/data/clients";
 import { clientBrandLogos } from "./client-brand-logos";
 
-export default function ClientLogo({ client }: { client: Client }) {
+interface ClientLogoProps {
+  client: Client;
+  className?: string;
+}
+
+export default function ClientLogo({
+  client,
+  className = "h-8 w-full max-w-[120px]",
+}: ClientLogoProps) {
   const Logo = clientBrandLogos[client.id];
 
   if (!Logo) {
@@ -12,5 +20,5 @@ export default function ClientLogo({ client }: { client: Client }) {
     );
   }
 
-  return <Logo className="h-8 w-full max-w-[120px]" />;
+  return <Logo className={className} />;
 }

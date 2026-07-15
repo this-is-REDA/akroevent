@@ -6,12 +6,11 @@ export interface Client {
 
 export const clients: Client[] = [
   { id: "ocp", name: "OCP", logo: "/logos/clients/ocp.png" },
-  { id: "nestle", name: "Nestlé", logo: "/logos/clients/nestle.png" },
-  { id: "renault", name: "Renault", logo: "/logos/clients/renault.png" },
+  { id: "nestle", name: "Nestlé", logo: "/logos/clients/nestle.svg" },
+  { id: "renault", name: "Renault", logo: "/logos/clients/renault.svg" },
   { id: "orange", name: "Orange", logo: "/logos/clients/orange.png" },
   { id: "inwi", name: "Inwi", logo: "/logos/clients/inwi.png" },
   { id: "bmci", name: "BMCI", logo: "/logos/clients/bmci.png" },
-  { id: "bnpparibas", name: "BNP Paribas", logo: "/logos/clients/bnpparibas.png" },
   { id: "banque-populaire", name: "Banque Populaire", logo: "/logos/clients/banque-populaire.png" },
   { id: "decathlon", name: "Decathlon", logo: "/logos/clients/decathlon.png" },
   { id: "totalenergies", name: "TotalEnergies", logo: "/logos/clients/totalenergies.png" },

@@ -67,7 +67,7 @@ export default function WhyChooseUs() {
                 className="group brand-card relative min-h-[300px] overflow-hidden px-6 py-10 sm:px-10 sm:py-12"
               >
                 <span
-                  className="pointer-events-none absolute left-6 top-8 font-display text-6xl leading-none tabular-nums text-brand-red/15 transition-colors duration-300 group-hover:text-brand-red/25 sm:left-10 sm:top-10 sm:text-7xl lg:text-8xl"
+                  className="pointer-events-none absolute left-6 top-8 font-display text-6xl leading-none tabular-nums text-brand-red/45 transition-colors duration-300 group-hover:text-brand-red/65 sm:left-10 sm:top-10 sm:text-7xl lg:text-8xl"
                   aria-hidden="true"
                 >
                   0{i + 1}
@@ -82,13 +82,13 @@ export default function WhyChooseUs() {
                     />
                   </div>
 
-                  <h3 className="mt-6 font-display text-sm uppercase tracking-[0.2em] text-white sm:text-base">
+                  <h3 className="mt-6 font-display text-base uppercase tracking-[0.2em] text-white sm:text-lg">
                     {card.title}
                   </h3>
 
                   <div className="my-5 h-px w-10 bg-brand-red/60 transition-all duration-300 group-hover:w-14 group-hover:bg-brand-red" />
 
-                  <p className="max-w-md text-sm leading-relaxed text-white/65">
+                  <p className="max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
                     {card.description}
                   </p>
                 </div>

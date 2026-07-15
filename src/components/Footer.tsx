@@ -25,10 +25,18 @@ export default function Footer() {
           >
             <Logo height={32} />
           </a>
-          <p className="max-w-md text-center text-xs leading-relaxed text-luxury-muted">
-            &copy; {currentYear} Akro Event. Tous droits réservés. L&apos;expertise au
-            service d&apos;expériences à valeur durable.
-          </p>
+          <div className="max-w-md text-center">
+            <p className="text-xs leading-relaxed text-black/55">
+              &copy; {currentYear} Akro Event. Tous droits réservés. L&apos;expertise au
+              service d&apos;expériences à valeur durable.
+            </p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-black/40">
+              Designed by{" "}
+              <span className="font-medium tracking-[0.12em] text-black/60">
+                vsnstudios
+              </span>
+            </p>
+          </div>
           <motion.a
             href="#accueil"
             onClick={(e) => {

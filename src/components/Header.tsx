@@ -1,19 +1,29 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 
-const navLinks = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#apropos", label: "À Propos" },
-  { href: "#services", label: "Services" },
-  { href: "#references", label: "Références" },
-  { href: "#contact", label: "Contact" },
+type NavLink =
+  | { href: string; label: string; type: "section" }
+  | { href: string; label: string; type: "page" };
+
+const navLinks: NavLink[] = [
+  { href: "#accueil", label: "Accueil", type: "section" },
+  { href: "#apropos", label: "À Propos", type: "section" },
+  { href: "#services", label: "Services", type: "section" },
+  { href: "/galerie", label: "Galerie", type: "page" },
+  { href: "#references", label: "Références", type: "section" },
+  { href: "#faq", label: "FAQ", type: "section" },
+  { href: "#contact", label: "Contact", type: "section" },
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -46,7 +56,11 @@ export default function Header() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push(`/${href}`);
+    }
   };
 
   return (
@@ -57,38 +71,51 @@ export default function Header() {
         } ${
           scrolled
             ? "header-glass-light py-0"
-            : "border-b border-transparent bg-white backdrop-blur-md"
+            : "border-b border-black/5 bg-white backdrop-blur-md"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 sm:py-5 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
           <a
             href="#accueil"
             onClick={(e) => { e.preventDefault(); handleNavClick("#accueil"); }}
             className="group shrink-0 md:justify-self-start"
           >
-            <Logo height={scrolled ? 30 : 34} priority />
+            <Logo height={scrolled ? 42 : 48} priority />
           </a>
 
           <nav className="hidden items-center gap-5 md:flex md:gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="nav-link-light"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.type === "page" ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link-light ${pathname === link.href ? "text-brand-red" : ""}`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                  className="nav-link-light"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </nav>
 
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-            className={`hidden justify-self-end px-5 py-2 font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 md:inline-block ${
+            className={`hidden justify-self-end px-10 py-4 font-display text-lg uppercase tracking-[0.16em] transition-all duration-300 sm:px-12 sm:py-5 sm:text-xl md:inline-block ${
               scrolled
-                ? "border border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-glow-red-sm"
-                : "btn-primary !px-5 !py-2"
+                ? "border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-glow-red-sm"
+                : "btn-primary !px-10 !py-4 sm:!px-12 sm:!py-5 !text-lg sm:!text-xl"
             }`}
           >
             Contact
@@ -127,19 +154,41 @@ export default function Header() {
             </div>
 
             <nav className="flex flex-1 flex-col justify-center overflow-y-auto px-6">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + i * 0.08 }}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                  className="border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) =>
+                link.type === "page" ? (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl ${
+                        pathname === link.href ? "text-brand-red" : ""
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08 }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className="border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl"
+                  >
+                    {link.label}
+                  </motion.a>
+                )
+              )}
             </nav>
 
             <div className="px-6 pb-10 pt-2 sm:px-8 sm:pb-12">
