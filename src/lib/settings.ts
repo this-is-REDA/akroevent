@@ -1,16 +1,22 @@
 import { createClient } from "@/lib/supabase/server";
-import { DEFAULT_SETTINGS, type SiteSettingsPublic } from "@/types/settings";
+import {
+  DEFAULT_SETTINGS,
+  SITE_SETTINGS_SELECT,
+  type SiteSettingsPublic,
+} from "@/types/settings";
 
 export async function getSiteSettings(): Promise<SiteSettingsPublic> {
   try {
     const supabase = createClient();
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("site_settings")
-      .select("whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url, hero_video_version")
+      .select(SITE_SETTINGS_SELECT)
       .eq("id", 1)
       .single();
 
-    if (data) return data;
+    if (!error && data) {
+      return { ...DEFAULT_SETTINGS, ...data };
+    }
   } catch {
     /* fallback */
   }

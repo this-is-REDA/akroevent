@@ -9,26 +9,39 @@ const cards = [
   {
     icon: Sparkles,
     title: "Créativité",
-    description:
-      "Une approche innovante combinant tendances émergentes et technologies récentes. Akro Event conçoit des projets uniques, reconnus par des partenaires publics et privés.",
+    lines: [
+      "Une approche innovante alliant",
+      "tendances et technologies récentes.",
+      "Des projets uniques, reconnus",
+      "par nos partenaires publics et privés.",
+    ],
   },
   {
     icon: Shuffle,
     title: "Flexibilité",
-    description:
-      "Notre approche flexible nous permet de concevoir des solutions sur mesure, adaptées aux contraintes et aux objectifs de chaque client.",
+    lines: [
+      "Des solutions sur mesure,",
+      "adaptées à vos contraintes",
+      "et aux objectifs de chaque client.",
+    ],
   },
   {
     icon: Award,
     title: "Expertise",
-    description:
-      "Grâce à notre expertise, nous avons accompagné de nombreux acteurs institutionnels et organismes étatiques, en répondant à des exigences élevées en qualité et performance.",
+    lines: [
+      "Nous accompagnons acteurs privés",
+      "et institutionnels avec exigence,",
+      "en qualité, organisation et résultats.",
+    ],
   },
   {
     icon: Ear,
     title: "Écoute Active",
-    description:
-      "Toujours à l'écoute de nos clients, nos équipes anticipent leurs enjeux afin de proposer des solutions innovantes, pertinentes et à fort impact.",
+    lines: [
+      "À l’écoute de vos enjeux,",
+      "nous anticipons vos besoins",
+      "pour des solutions claires et impactantes.",
+    ],
   },
 ];
 
@@ -64,32 +77,41 @@ export default function WhyChooseUs() {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 whileHover={{ y: -6 }}
-                className="group brand-card relative min-h-[300px] overflow-hidden px-6 py-10 sm:px-10 sm:py-12"
+                className="group brand-card relative overflow-hidden px-6 py-8 sm:px-8 sm:py-10"
               >
-                <span
-                  className="pointer-events-none absolute left-6 top-8 font-display text-6xl leading-none tabular-nums text-brand-red/45 transition-colors duration-300 group-hover:text-brand-red/65 sm:left-10 sm:top-10 sm:text-7xl lg:text-8xl"
-                  aria-hidden="true"
-                >
-                  0{i + 1}
-                </span>
+                <div className="relative z-10 flex items-start gap-4 sm:gap-6">
+                  {/* Numéro + titre */}
+                  <div className="w-[42%] shrink-0 sm:w-[38%]">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="font-display text-4xl leading-none tabular-nums text-brand-red/50 transition-colors duration-300 group-hover:text-brand-red/70 sm:text-5xl"
+                        aria-hidden="true"
+                      >
+                        0{i + 1}
+                      </span>
+                      <h3 className="font-display text-sm uppercase tracking-[0.18em] text-white sm:text-base">
+                        {card.title}
+                      </h3>
+                    </div>
 
-                <div className="relative z-10 pt-16 sm:pt-20">
-                  <div className="icon-glow flex h-12 w-12 items-center justify-center">
-                    <card.icon
-                      size={18}
-                      strokeWidth={1.25}
-                      className="text-brand-red transition-transform duration-300 group-hover:scale-105"
-                    />
+                    <div className="mt-4 icon-glow flex h-10 w-10 items-center justify-center">
+                      <card.icon
+                        size={16}
+                        strokeWidth={1.25}
+                        className="text-brand-red transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+
+                    <div className="mt-4 h-px w-10 bg-brand-red/60 transition-all duration-300 group-hover:w-14 group-hover:bg-brand-red" />
                   </div>
 
-                  <h3 className="mt-6 font-display text-base uppercase tracking-[0.2em] text-white sm:text-lg">
-                    {card.title}
-                  </h3>
-
-                  <div className="my-5 h-px w-10 bg-brand-red/60 transition-all duration-300 group-hover:w-14 group-hover:bg-brand-red" />
-
-                  <p className="max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
-                    {card.description}
+                  {/* Texte en face, lignes équilibrées */}
+                  <p className="flex-1 border-l border-white/10 pl-4 text-sm leading-relaxed text-white/85 sm:pl-6 sm:text-base">
+                    {card.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </motion.div>

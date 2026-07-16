@@ -17,9 +17,12 @@ import MarqueeBand from "@/components/MarqueeBand";
 import { getSiteSettings } from "@/lib/settings";
 import { getHeroVideoSrc } from "@/lib/hero-video";
 import { getClientLogos } from "@/lib/client-logos";
-import { homeMetadata } from "@/lib/seo";
+import { buildHomeMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = homeMetadata;
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return buildHomeMetadata(settings);
+}
 
 export default async function Home() {
   const [settings, clientLogos] = await Promise.all([

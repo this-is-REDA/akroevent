@@ -1,0 +1,9 @@
+-- SEO & GEO fields for site_settings (run in Supabase SQL Editor)
+ALTER TABLE site_settings
+  ADD COLUMN IF NOT EXISTS seo_title TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS seo_description TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS seo_keywords TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_image_url TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS geo_summary TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS geo_service_area TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS geo_llms_txt TEXT NOT NULL DEFAULT '';

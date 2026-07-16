@@ -7,6 +7,13 @@ export interface SiteSettings {
   instagram_url: string;
   linkedin_url: string;
   hero_video_version: string;
+  seo_title: string;
+  seo_description: string;
+  seo_keywords: string;
+  og_image_url: string;
+  geo_summary: string;
+  geo_service_area: string;
+  geo_llms_txt: string;
   updated_at: string;
 }
 
@@ -20,4 +27,14 @@ export const DEFAULT_SETTINGS: SiteSettingsPublic = {
   instagram_url: "https://www.instagram.com/akro_event/",
   linkedin_url: "https://www.linkedin.com/company/111628813/",
   hero_video_version: "",
+  seo_title: "",
+  seo_description: "",
+  seo_keywords: "",
+  og_image_url: "",
+  geo_summary: "",
+  geo_service_area: "",
+  geo_llms_txt: "",
 };
+
+export const SITE_SETTINGS_SELECT =
+  "whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url, hero_video_version, seo_title, seo_description, seo_keywords, og_image_url, geo_summary, geo_service_area, geo_llms_txt";

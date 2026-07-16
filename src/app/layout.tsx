@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
 import SiteExtras from "@/components/SiteExtras";
-import { rootMetadata } from "@/lib/seo";
+import { buildRootMetadata } from "@/lib/seo";
+import { getSiteSettings } from "@/lib/settings";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -18,7 +19,10 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = rootMetadata;
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return buildRootMetadata(settings);
+}
 
 export default function RootLayout({
   children,

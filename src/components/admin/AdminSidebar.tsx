@@ -3,13 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, ImageIcon, Settings, LogOut, X, Building2 } from "lucide-react";
+import { FileText, ImageIcon, Settings, LogOut, X, Building2, Search } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const links = [
   { href: "/admin", label: "Devis", icon: FileText },
   { href: "/admin/galerie", label: "Galerie", icon: ImageIcon },
   { href: "/admin/references", label: "Références", icon: Building2 },
+  { href: "/admin/seo", label: "SEO & GEO", icon: Search },
   { href: "/admin/parametres", label: "Paramètres", icon: Settings },
 ];
 
