@@ -25,20 +25,20 @@ export default function EventShowcase() {
             className="mx-auto max-w-2xl text-center"
           >
             <span className="section-label">Nos univers</span>
-            <h2 className="heading-display-3d mt-5 font-display text-4xl uppercase tracking-wide text-white sm:text-5xl lg:text-6xl">
+            <h2 className="heading-display-3d mt-4 font-display text-4xl uppercase tracking-wide text-white sm:text-5xl">
               Des expériences
               <br />
               qui marquent
             </h2>
-            <div className="section-divider mx-auto mt-6 max-w-xs" />
-            <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/70">
+            <div className="section-divider mx-auto mt-5 max-w-xs" />
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/70 sm:text-base">
               Team building, événements corporate, stands sur mesure et gestion
               opérationnelle — découvrez l&apos;univers Akro Event à travers nos
               domaines d&apos;expertise.
             </p>
           </motion.div>
 
-          <div className="mx-auto mt-14 flex max-w-5xl flex-col gap-5">
+          <div className="mx-auto mt-8 flex max-w-5xl flex-col gap-4">
             {landingShowcase.map((item, i) => {
               const reverse = i % 2 === 1;
               return (

@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import SectionDivider from "./SectionDivider";
 import AmbientOrbs from "./AmbientOrbs";
-import { faqItems } from "@/data/faq";
+import type { FaqItem } from "@/data/faq";
 
-export default function Faq() {
+export default function Faq({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -21,23 +21,23 @@ export default function Faq() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="mx-auto mb-14 max-w-2xl text-center"
+            className="mx-auto mb-8 max-w-2xl text-center"
           >
             <span className="section-label">FAQ</span>
-            <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
+            <h2 className="heading-display-3d mt-4 font-display text-4xl uppercase tracking-wide sm:text-5xl">
               Questions
               <br />
               Fréquentes
             </h2>
-            <div className="section-divider mx-auto mt-8 w-32" />
-            <p className="mx-auto mt-6 max-w-lg text-base font-light leading-relaxed text-white/70">
+            <div className="section-divider mx-auto mt-5 w-32" />
+            <p className="mx-auto mt-4 max-w-lg text-sm font-light leading-relaxed text-white/70 sm:text-base">
               Les réponses aux questions les plus posées sur Akro Event, nos
               services et l&apos;organisation d&apos;événements au Maroc.
             </p>
           </motion.div>
 
           <div className="mx-auto max-w-4xl border border-white/[0.08]">
-            {faqItems.map((item, i) => {
+            {items.map((item, i) => {
               const isOpen = openIndex === i;
               const num = String(i + 1).padStart(2, "0");
 
@@ -54,10 +54,10 @@ export default function Faq() {
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    className="group flex w-full items-start gap-4 px-5 py-6 text-left transition-colors hover:bg-white/[0.02] sm:gap-6 sm:px-8 sm:py-7"
+                    className="group flex w-full items-start gap-3 px-4 py-3.5 text-left transition-colors hover:bg-white/[0.02] sm:gap-4 sm:px-6 sm:py-4"
                   >
                     <span
-                      className={`shrink-0 font-display text-2xl tabular-nums transition-colors sm:text-3xl ${
+                      className={`shrink-0 font-display text-xl tabular-nums transition-colors sm:text-2xl ${
                         isOpen ? "text-brand-red" : "text-brand-red/35 group-hover:text-brand-red/60"
                       }`}
                     >
@@ -65,7 +65,7 @@ export default function Faq() {
                     </span>
                     <span className="min-w-0 flex-1">
                       <span
-                        className={`block font-display text-base uppercase tracking-[0.12em] transition-colors sm:text-lg ${
+                        className={`block font-display text-sm uppercase tracking-[0.12em] transition-colors sm:text-base ${
                           isOpen ? "text-white" : "text-white/85 group-hover:text-white"
                         }`}
                       >
@@ -90,9 +90,9 @@ export default function Faq() {
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="border-t border-white/[0.06] px-5 pb-7 pl-[3.75rem] sm:px-8 sm:pl-[4.75rem]">
-                          <div className="section-divider mb-5 w-10" />
-                          <p className="max-w-2xl text-sm font-light leading-relaxed text-white/75 sm:text-base">
+                        <div className="border-t border-white/[0.06] px-4 pb-4 pl-[3.25rem] sm:px-6 sm:pl-[4.25rem] sm:pb-5">
+                          <div className="section-divider mb-3 w-10" />
+                          <p className="max-w-2xl text-sm font-light leading-relaxed text-white/75">
                             {item.answer}
                           </p>
                         </div>

@@ -4,7 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import UniversDetail from "@/components/UniversDetail";
-import { getUniversBySlug, getUniversSlugs } from "@/data/univers";
+import { getUniversSlugs } from "@/data/univers";
+import { getUniversBySlugDb, getUniversItems } from "@/lib/univers-db";
 import { getSiteSettings } from "@/lib/settings";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
@@ -12,12 +13,14 @@ type PageProps = {
   params: { slug: string };
 };
 
-export function generateStaticParams() {
-  return getUniversSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const items = await getUniversItems();
+  const slugs = items.length ? items.map((i) => i.slug) : getUniversSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const item = getUniversBySlug(params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const item = await getUniversBySlugDb(params.slug);
   if (!item) {
     return { title: "Univers introuvable" };
   }
@@ -38,7 +41,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default async function UniversPage({ params }: PageProps) {
-  const item = getUniversBySlug(params.slug);
+  const item = await getUniversBySlugDb(params.slug);
   if (!item) notFound();
 
   const settings = await getSiteSettings();

@@ -32,9 +32,14 @@ export default function Footer() {
             </p>
             <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-black/40">
               Designed by{" "}
-              <span className="font-medium tracking-[0.12em] text-black/60">
+              <a
+                href="https://www.vsnstudios.ma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium tracking-[0.12em] text-black/60 transition-colors hover:text-brand-red"
+              >
                 vsnstudios
-              </span>
+              </a>
             </p>
           </div>
           <motion.a

@@ -3,14 +3,40 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, ImageIcon, Settings, LogOut, X, Building2, Search } from "lucide-react";
+import {
+  FileText,
+  ImageIcon,
+  Settings,
+  LogOut,
+  X,
+  Building2,
+  Search,
+  HelpCircle,
+  Layers,
+  Newspaper,
+  Quote,
+  FolderOpen,
+  Inbox,
+  CornerDownRight,
+  Users,
+  Plug,
+} from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const links = [
   { href: "/admin", label: "Devis", icon: FileText },
+  { href: "/admin/messages", label: "Messages", icon: Inbox },
+  { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
+  { href: "/admin/univers", label: "Univers", icon: Layers },
+  { href: "/admin/blog", label: "Blog", icon: Newspaper },
+  { href: "/admin/temoignages", label: "Témoignages", icon: Quote },
   { href: "/admin/galerie", label: "Galerie", icon: ImageIcon },
+  { href: "/admin/medias", label: "Médias", icon: FolderOpen },
   { href: "/admin/references", label: "Références", icon: Building2 },
   { href: "/admin/seo", label: "SEO & GEO", icon: Search },
+  { href: "/admin/redirections", label: "Redirections", icon: CornerDownRight },
+  { href: "/admin/integrations", label: "Intégrations", icon: Plug },
+  { href: "/admin/utilisateurs", label: "Utilisateurs", icon: Users },
   { href: "/admin/parametres", label: "Paramètres", icon: Settings },
 ];
 
@@ -64,7 +90,7 @@ export default function AdminSidebar({ email, open = false, onClose }: AdminSide
         </button>
       </div>
 
-      <nav className="flex-1 px-3 py-6">
+      <nav className="flex-1 overflow-y-auto px-3 py-6">
         <ul className="space-y-1">
           {links.map((link) => {
             const active = pathname === link.href;
@@ -86,10 +112,14 @@ export default function AdminSidebar({ email, open = false, onClose }: AdminSide
         </ul>
       </nav>
 
-      <div className="border-t border-white/10 px-5 py-5">
-        <p className="mb-4 break-all text-xs text-luxury-muted">{email}</p>
-        <button onClick={handleLogout} className="admin-btn-logout">
-          <LogOut size={14} />
+      <div className="border-t border-white/10 px-5 py-4">
+        <p className="truncate text-xs text-luxury-muted">{email}</p>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="mt-3 inline-flex items-center gap-2 text-sm text-white/70 transition hover:text-white"
+        >
+          <LogOut size={14} strokeWidth={1.5} />
           Déconnexion
         </button>
       </div>

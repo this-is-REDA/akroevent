@@ -74,16 +74,16 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="mb-20 max-w-2xl"
+            className="mb-10 max-w-2xl"
           >
             <span className="section-label">
               Domaines d&apos;Activité
             </span>
-            <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase tracking-wide sm:text-6xl">
+            <h2 className="heading-display-3d mt-4 font-display text-4xl uppercase tracking-wide sm:text-5xl">
               Nos Services
             </h2>
-            <div className="section-divider mt-8 w-full max-w-xs" />
-            <p className="mt-6 text-base leading-relaxed text-white/70">
+            <div className="section-divider mt-5 w-full max-w-xs" />
+            <p className="mt-4 text-sm leading-relaxed text-white/80 sm:text-base">
               Une offre globale dans le domaine de l&apos;événementiel à travers
               quatre pôles de compétence majeurs.
             </p>
@@ -110,10 +110,10 @@ export default function Services() {
                   <button
                     type="button"
                     onClick={() => setActiveIndex(isOpen ? null : i)}
-                    className="relative flex w-full items-center gap-4 py-8 text-left transition-all duration-300 sm:gap-6 sm:py-10 md:gap-10 md:py-12"
+                    className="relative flex w-full items-center gap-3 py-4 text-left transition-all duration-300 sm:gap-5 sm:py-5 md:gap-8 md:py-6"
                   >
                     <span
-                      className={`pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 select-none font-display text-[6rem] leading-none transition-colors duration-300 sm:block sm:text-[8rem] lg:text-[12rem] ${
+                      className={`pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 select-none font-display text-[4rem] leading-none transition-colors duration-300 sm:block sm:text-[5.5rem] lg:text-[7rem] ${
                         isOpen
                           ? "text-brand-red/[0.18]"
                           : "text-brand-red/[0.1] group-hover:text-brand-red/[0.14]"
@@ -124,8 +124,8 @@ export default function Services() {
                     </span>
 
                     <span
-                      className={`relative z-10 font-display text-4xl tabular-nums transition-colors duration-300 sm:text-5xl ${
-                        isOpen ? "text-white" : "text-white/70 group-hover:text-white"
+                      className={`relative z-10 font-display text-2xl tabular-nums transition-colors duration-300 sm:text-3xl ${
+                        isOpen ? "text-white" : "text-white/80 group-hover:text-white"
                       }`}
                     >
                       {num}
@@ -133,21 +133,21 @@ export default function Services() {
 
                     <div className="relative z-10 flex-1">
                       <h3
-                        className={`font-display text-xl uppercase tracking-wide transition-colors duration-300 sm:text-2xl md:text-4xl ${
-                          isOpen ? "heading-display-3d text-white" : "text-white group-hover:text-white"
+                        className={`font-display text-lg uppercase tracking-wide transition-colors duration-300 sm:text-xl md:text-2xl ${
+                          isOpen ? "heading-display-3d text-white" : "text-white/90 group-hover:text-white"
                         }`}
                       >
                         {service.title}
                       </h3>
                       <p
-                        className={`mt-1 text-xs font-light italic transition-colors duration-300 ${
-                          isOpen ? "text-brand-gold/90" : "text-white/45 group-hover:text-white/70"
+                        className={`mt-0.5 text-xs font-light italic transition-colors duration-300 ${
+                          isOpen ? "text-brand-gold/90" : "text-white/55 group-hover:text-white/75"
                         }`}
                       >
                         {service.subtitle}
                       </p>
                       {!isOpen && (
-                        <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/65 sm:block">
+                        <p className="mt-2 hidden max-w-xl text-sm leading-relaxed text-white/75 sm:block">
                           {service.description}
                         </p>
                       )}
@@ -180,19 +180,19 @@ export default function Services() {
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="relative mb-8 border border-white/[0.08] border-t-brand-red/50 bg-brand-secondary p-6 sm:p-10">
-                          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/60">
+                        <div className="relative mb-4 border border-white/[0.08] border-t-brand-red/50 bg-brand-secondary p-4 sm:mb-5 sm:p-6">
+                          <p className="mb-5 max-w-2xl text-sm leading-relaxed text-white/75">
                             {service.description}
                           </p>
-                          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {service.categories.map((cat) => (
-                              <div key={cat.label} className="border-l border-brand-gold/35 pl-5">
+                              <div key={cat.label} className="border-l border-brand-gold/35 pl-4">
                                 <h4 className="font-display text-sm uppercase tracking-[0.15em] text-white">
                                   {cat.label}
                                 </h4>
-                                <ul className="mt-3 space-y-2">
+                                <ul className="mt-2 space-y-1.5">
                                   {cat.items.map((item) => (
-                                    <li key={item} className="flex items-start gap-2 text-sm text-white/70">
+                                    <li key={item} className="flex items-start gap-2 text-sm text-white/80">
                                       <span className="mt-2 h-px w-3 shrink-0 bg-brand-red/50" />
                                       {item}
                                     </li>

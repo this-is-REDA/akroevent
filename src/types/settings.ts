@@ -14,6 +14,10 @@ export interface SiteSettings {
   geo_summary: string;
   geo_service_area: string;
   geo_llms_txt: string;
+  ga_measurement_id: string;
+  gtm_id: string;
+  notify_email: string;
+  notify_on_devis: boolean;
   updated_at: string;
 }
 
@@ -34,7 +38,11 @@ export const DEFAULT_SETTINGS: SiteSettingsPublic = {
   geo_summary: "",
   geo_service_area: "",
   geo_llms_txt: "",
+  ga_measurement_id: "",
+  gtm_id: "",
+  notify_email: "",
+  notify_on_devis: true,
 };
 
 export const SITE_SETTINGS_SELECT =
-  "whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url, hero_video_version, seo_title, seo_description, seo_keywords, og_image_url, geo_summary, geo_service_area, geo_llms_txt";
+  "whatsapp_phone, phone_display, email, facebook_url, instagram_url, linkedin_url, hero_video_version, seo_title, seo_description, seo_keywords, og_image_url, geo_summary, geo_service_area, geo_llms_txt, ga_measurement_id, gtm_id, notify_email, notify_on_devis";

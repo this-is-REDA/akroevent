@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
-export default function ContactForm() {
+export default function ContactForm({ compact = false }: { compact?: boolean }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -49,11 +49,18 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 lg:p-10">
-      <h3 className="font-display text-3xl uppercase tracking-wide text-white sm:text-[2rem]">
-        Demande de Devis
+    <form
+      onSubmit={handleSubmit}
+      className={
+        compact
+          ? "bg-transparent p-5 sm:p-6"
+          : "glass-card p-6 sm:p-8 lg:p-10"
+      }
+    >
+      <h3 className="font-display text-2xl uppercase tracking-wide text-white sm:text-3xl">
+        Demander un devis
       </h3>
-      <p className="mt-2 text-base text-luxury-muted">
+      <p className="mt-1.5 text-sm text-luxury-muted">
         Remplissez le formulaire et nous vous recontacterons rapidement.
       </p>
 
@@ -61,7 +68,7 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 flex items-center gap-3 border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-400"
+          className="mt-4 flex items-center gap-3 border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-400"
         >
           <CheckCircle size={18} />
           Demande envoyée avec succès ! Nous vous recontacterons bientôt.
@@ -72,62 +79,122 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 flex items-center gap-3 border border-brand-red/30 bg-brand-red/10 p-4 text-sm text-brand-red"
+          className="mt-4 flex items-center gap-3 border border-brand-red/30 bg-brand-red/10 p-3 text-sm text-brand-red"
         >
           <AlertCircle size={18} />
           {error}
         </motion.div>
       )}
 
-      <div className="mt-10 space-y-6">
-        <div className="grid gap-6 md:grid-cols-2">
+      <div className={`space-y-4 ${compact ? "mt-5" : "mt-8 space-y-6"}`}>
+        <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label htmlFor="name" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+            <label
+              htmlFor="name"
+              className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+            >
               Nom complet *
             </label>
-            <input id="name" name="name" type="text" required placeholder="Votre nom" className="input-underline" />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Votre nom"
+              className="input-underline"
+            />
           </div>
           <div>
-            <label htmlFor="company" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+            <label
+              htmlFor="company"
+              className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+            >
               Entreprise
             </label>
-            <input id="company" name="company" type="text" placeholder="Votre entreprise" className="input-underline" />
+            <input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Votre entreprise"
+              className="input-underline"
+            />
           </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label htmlFor="email" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+            <label
+              htmlFor="email"
+              className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+            >
               Email *
             </label>
-            <input id="email" name="email" type="email" required placeholder="votre@email.com" className="input-underline" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="votre@email.com"
+              className="input-underline"
+            />
           </div>
           <div>
-            <label htmlFor="phone" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+            <label
+              htmlFor="phone"
+              className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+            >
               Téléphone
             </label>
-            <input id="phone" name="phone" type="tel" placeholder="+212 6 XX XX XX XX" className="input-underline" />
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="+212 6 XX XX XX XX"
+              className="input-underline"
+            />
           </div>
         </div>
         <div>
-          <label htmlFor="service" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+          <label
+            htmlFor="service"
+            className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+          >
             Service souhaité *
           </label>
-          <select id="service" name="service" required className="input-underline cursor-pointer" defaultValue="">
-            <option value="" disabled className="bg-brand-card">Sélectionnez un service</option>
-            <option value="team-building" className="bg-brand-card">Team Building Corporate</option>
-            <option value="evenements" className="bg-brand-card">Événements Corporate</option>
-            <option value="stands" className="bg-brand-card">Stands Personnalisés</option>
-            <option value="gestion" className="bg-brand-card">Gestion Déléguée</option>
+          <select
+            id="service"
+            name="service"
+            required
+            className="input-underline cursor-pointer"
+            defaultValue=""
+          >
+            <option value="" disabled className="bg-brand-card">
+              Sélectionnez un service
+            </option>
+            <option value="team-building" className="bg-brand-card">
+              Team Building Corporate
+            </option>
+            <option value="evenements" className="bg-brand-card">
+              Événements Corporate
+            </option>
+            <option value="stands" className="bg-brand-card">
+              Stands Personnalisés
+            </option>
+            <option value="gestion" className="bg-brand-card">
+              Gestion Déléguée
+            </option>
           </select>
         </div>
         <div>
-          <label htmlFor="message" className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-luxury-muted">
+          <label
+            htmlFor="message"
+            className="mb-1 block text-xs uppercase tracking-[0.2em] text-luxury-muted"
+          >
             Message
           </label>
           <textarea
             id="message"
             name="message"
-            rows={4}
+            rows={compact ? 3 : 4}
             placeholder="Décrivez votre projet..."
             className="input-underline resize-none"
           />
@@ -137,7 +204,7 @@ export default function ContactForm() {
           disabled={loading}
           whileHover={{ scale: loading ? 1 : 1.02 }}
           whileTap={{ scale: loading ? 1 : 0.98 }}
-          className="btn-primary flex w-full items-center justify-center gap-2 disabled:opacity-60"
+          className="btn-primary flex w-full items-center justify-center gap-2 !py-3 disabled:opacity-60"
         >
           {loading ? (
             <>
@@ -145,7 +212,7 @@ export default function ContactForm() {
               Envoi en cours...
             </>
           ) : (
-            "Envoyer la Demande"
+            "Envoyer la demande"
           )}
         </motion.button>
       </div>

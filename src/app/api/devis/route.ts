@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import type { DevisInsert } from "@/types/devis";
+import { getSiteSettings } from "@/lib/settings";
+import { notifyNewDevis } from "@/lib/notify";
 
 export async function POST(request: Request) {
   try {
@@ -23,15 +25,17 @@ export async function POST(request: Request) {
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     );
 
-    const { error } = await supabase.from("devis").insert({
+    const payload = {
       name: body.name.trim(),
       company: body.company?.trim() || null,
       email: body.email.trim(),
       phone: body.phone?.trim() || null,
       service: body.service,
       message: body.message?.trim() || null,
-      status: "nouveau",
-    });
+      status: "nouveau" as const,
+    };
+
+    const { error } = await supabase.from("devis").insert(payload);
 
     if (error) {
       console.error("Supabase insert error:", error);
@@ -39,6 +43,30 @@ export async function POST(request: Request) {
         { error: "Erreur lors de l'envoi. Réessayez plus tard." },
         { status: 500 }
       );
+    }
+
+    // Mirror into Messages inbox (best-effort)
+    await supabase.from("contact_messages").insert({
+      name: payload.name,
+      email: payload.email,
+      phone: payload.phone,
+      subject: `Devis — ${payload.service}`,
+      message: [
+        payload.company ? `Société: ${payload.company}` : null,
+        `Service: ${payload.service}`,
+        payload.message || "",
+      ]
+        .filter(Boolean)
+        .join("\n"),
+      status: "nouveau",
+      source: "devis",
+    });
+
+    try {
+      const settings = await getSiteSettings();
+      await notifyNewDevis(settings, payload);
+    } catch (notifyError) {
+      console.error("notify error:", notifyError);
     }
 
     return NextResponse.json({ success: true });

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
 import SiteExtras from "@/components/SiteExtras";
+import Analytics from "@/components/Analytics";
 import { buildRootMetadata } from "@/lib/seo";
 import { getSiteSettings } from "@/lib/settings";
 
@@ -24,16 +25,22 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildRootMetadata(settings);
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+
   return (
     <html lang="fr" className={`${bebas.variable} ${dmSans.variable} overflow-x-hidden`}>
       <body className="overflow-x-hidden font-sans">
         {children}
         <SiteExtras />
+        <Analytics
+          gaId={settings.ga_measurement_id}
+          gtmId={settings.gtm_id}
+        />
       </body>
     </html>
   );

@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
             <div className="section-divider mt-8 w-full max-w-xs" />
           </motion.div>
 
-          <div className="mt-16 grid gap-4 sm:grid-cols-2">
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4">
             {cards.map((card, i) => (
               <motion.div
                 key={card.title}

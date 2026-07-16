@@ -367,7 +367,15 @@ export default function LandingPageContent({
               &copy; {new Date().getFullYear()} Akro Event. Tous droits réservés.
             </p>
             <p className="mt-2 text-[10px] tracking-[0.12em] text-luxury-muted/75">
-              Designed by VSN Studios
+              Designed by{" "}
+              <a
+                href="https://www.vsnstudios.ma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-brand-red"
+              >
+                VSN Studios
+              </a>
             </p>
           </div>
           <Link

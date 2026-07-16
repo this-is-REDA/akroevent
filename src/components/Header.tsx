@@ -15,10 +15,9 @@ const navLinks: NavLink[] = [
   { href: "#accueil", label: "Accueil", type: "section" },
   { href: "#apropos", label: "À Propos", type: "section" },
   { href: "#services", label: "Services", type: "section" },
-  { href: "/galerie", label: "Galerie", type: "page" },
+  { href: "/blog", label: "Blog", type: "page" },
   { href: "#references", label: "Références", type: "section" },
-  { href: "#faq", label: "FAQ", type: "section" },
-  { href: "#contact", label: "Contact", type: "section" },
+  { href: "/galerie", label: "Galerie", type: "page" },
 ];
 
 export default function Header() {
@@ -31,7 +30,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -68,67 +69,79 @@ export default function Header() {
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
           visible ? "translate-y-0" : "-translate-y-full pointer-events-none"
-        } ${
-          scrolled
-            ? "header-glass-light py-0"
-            : "border-b border-black/5 bg-white backdrop-blur-md"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 sm:py-5 md:grid md:grid-cols-[1fr_auto_1fr] md:justify-normal lg:px-12">
-          <a
-            href="#accueil"
-            onClick={(e) => { e.preventDefault(); handleNavClick("#accueil"); }}
-            className="group shrink-0 md:justify-self-start"
-          >
-            <Logo height={scrolled ? 42 : 48} priority />
-          </a>
+        <div
+          className={`w-full ${
+            scrolled
+              ? "header-glass-light"
+              : "border-b border-black/5 bg-white backdrop-blur-md"
+          }`}
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2.5 sm:px-8 sm:py-3 md:grid md:grid-cols-[1fr_auto_1fr] lg:px-12">
+            <a
+              href="#accueil"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#accueil");
+              }}
+              className="group shrink-0 md:justify-self-start"
+            >
+              <Logo height={scrolled ? 34 : 38} priority />
+            </a>
 
-          <nav className="hidden items-center gap-5 md:flex md:gap-6 lg:gap-8">
-            {navLinks.map((link) =>
-              link.type === "page" ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`nav-link-light ${pathname === link.href ? "text-brand-red" : ""}`}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className="nav-link-light"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
-          </nav>
+            <nav className="hidden items-center justify-center gap-4 md:flex lg:gap-6">
+              {navLinks.map((link) =>
+                link.type === "page" ? (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`nav-link-light ${
+                      pathname === link.href ? "text-brand-red" : ""
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className="nav-link-light"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
+            </nav>
 
-          <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-            className={`hidden justify-self-end px-10 py-4 font-display text-lg uppercase tracking-[0.16em] transition-all duration-300 sm:px-12 sm:py-5 sm:text-xl md:inline-block ${
-              scrolled
-                ? "border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-glow-red-sm"
-                : "btn-primary !px-10 !py-4 sm:!px-12 sm:!py-5 !text-lg sm:!text-xl"
-            }`}
-          >
-            Contact
-          </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#contact");
+              }}
+              className={`hidden justify-self-end px-5 py-2 font-display text-xs uppercase tracking-[0.14em] transition-all duration-300 md:inline-block ${
+                scrolled
+                  ? "border border-brand-red text-brand-red hover:bg-brand-red hover:text-white"
+                  : "btn-primary !px-5 !py-2 !text-xs"
+              }`}
+            >
+              Contact
+            </a>
 
-          <button
-            type="button"
-            className="-mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-brand-dark md:hidden"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Ouvrir le menu"
-          >
-            <Menu size={22} strokeWidth={1.5} />
-          </button>
+            <button
+              type="button"
+              className="-mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-brand-dark md:hidden"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Ouvrir le menu"
+            >
+              <Menu size={22} strokeWidth={1.5} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -141,15 +154,15 @@ export default function Header() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-[60] flex flex-col bg-brand-dark md:hidden"
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-              <Logo height={32} />
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <Logo height={28} />
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Fermer le menu"
                 className="flex h-10 w-10 items-center justify-center"
               >
-                <X size={24} strokeWidth={1.5} className="text-white" />
+                <X size={22} strokeWidth={1.5} className="text-white" />
               </button>
             </div>
 
@@ -165,7 +178,7 @@ export default function Header() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`block border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl ${
+                      className={`block border-b border-white/[0.06] py-4 font-display text-2xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:text-3xl ${
                         pathname === link.href ? "text-brand-red" : ""
                       }`}
                     >
@@ -183,7 +196,7 @@ export default function Header() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="border-b border-white/[0.06] py-5 font-display text-3xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:py-6 sm:text-4xl"
+                    className="border-b border-white/[0.06] py-4 font-display text-2xl uppercase tracking-wide text-white transition-colors hover:text-brand-red sm:text-3xl"
                   >
                     {link.label}
                   </motion.a>
@@ -191,11 +204,14 @@ export default function Header() {
               )}
             </nav>
 
-            <div className="px-6 pb-10 pt-2 sm:px-8 sm:pb-12">
+            <div className="px-6 pb-8 pt-2">
               <a
                 href="#contact"
-                onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-                className="btn-primary block py-4 text-center"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("#contact");
+                }}
+                className="btn-primary block py-3 text-center !text-sm"
               >
                 Contact
               </a>

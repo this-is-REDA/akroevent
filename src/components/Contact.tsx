@@ -39,102 +39,106 @@ export default function Contact({ settings }: ContactProps) {
       <SectionDivider />
       <section id="contact" className="section-surface section-padding overflow-hidden">
         <AmbientOrbs variant="contact" />
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <span className="section-label">Parlons de Votre Projet</span>
-              <h2 className="heading-display-3d mt-6 font-display text-5xl uppercase leading-none tracking-wide sm:text-6xl lg:text-7xl">
-                Contactez
-                <br />
-                Nous
-              </h2>
-              <div className="section-divider my-8 w-full max-w-sm" />
-              <p className="max-w-md text-base font-light italic leading-relaxed text-luxury-muted">
-                Votre événement sera une réussite assurée, pas qu&apos;une simple
-                prestation ! Contactez notre équipe pour discuter de vos besoins
-                et obtenir un devis personnalisé.
-              </p>
+        <div className="relative mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 max-w-2xl"
+          >
+            <span className="section-label">Parlons de Votre Projet</span>
+            <h2 className="heading-display-3d mt-4 font-display text-4xl uppercase leading-none tracking-wide sm:text-5xl">
+              Demander un devis
+            </h2>
+            <div className="section-divider my-5 w-full max-w-sm" />
+            <p className="max-w-xl text-sm font-light italic leading-relaxed text-luxury-muted sm:text-base">
+              Remplissez le formulaire ou contactez-nous directement — nous vous
+              répondons rapidement avec une proposition personnalisée.
+            </p>
+          </motion.div>
 
-              <div className="mt-12 space-y-8">
-                {contactInfo.map((item, i) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="group flex items-start gap-5 border-b border-white/[0.06] pb-8 transition-colors"
-                  >
-                    <item.icon size={18} strokeWidth={1} className="mt-1 shrink-0 text-brand-red" />
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 break-words font-display text-lg uppercase tracking-wide text-white transition-colors group-hover:text-brand-red sm:text-xl">
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="mt-10">
-                <p className="mb-5 text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-                  Suivez-nous
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="glow-border overflow-hidden"
+          >
+            <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+              <div className="border-b border-white/[0.08] bg-brand-secondary/60 p-5 sm:p-6 lg:border-b-0 lg:border-r lg:border-white/[0.08]">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+                  Coordonnées
                 </p>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
+                <div className="mt-4 space-y-4">
+                  {contactInfo.map((item) => (
                     <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="flex h-11 w-11 items-center justify-center border border-white/[0.08] text-luxury-muted transition-all duration-300 hover:border-brand-red hover:text-brand-red"
+                      key={item.label}
+                      href={item.href}
+                      className="group flex items-start gap-3 transition-colors"
                     >
-                      <social.icon size={18} strokeWidth={1.5} />
+                      <item.icon
+                        size={16}
+                        strokeWidth={1.25}
+                        className="mt-0.5 shrink-0 text-brand-red"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+                          {item.label}
+                        </p>
+                        <p className="mt-0.5 break-words text-sm text-white transition-colors group-hover:text-brand-red sm:text-base">
+                          {item.value}
+                        </p>
+                      </div>
                     </a>
                   ))}
                 </div>
+
+                <div className="mt-6 border-t border-white/[0.08] pt-5">
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+                    Suivez-nous
+                  </p>
+                  <div className="flex gap-2">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="flex h-9 w-9 items-center justify-center border border-white/[0.08] text-luxury-muted transition-all duration-300 hover:border-brand-red hover:text-brand-red"
+                      >
+                        <social.icon size={16} strokeWidth={1.5} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <a
+                  href="https://maps.app.goo.gl/SKia674D4HQcW3DbA?g_st=ic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 flex items-start gap-3 border-t border-white/[0.08] pt-5 transition-colors hover:text-brand-red"
+                >
+                  <MapPin
+                    size={16}
+                    strokeWidth={1.25}
+                    className="mt-0.5 shrink-0 text-brand-red"
+                  />
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+                      Zone d&apos;intervention
+                    </p>
+                    <p className="mt-0.5 text-sm text-white">Maroc — tout le Royaume</p>
+                  </div>
+                </a>
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="glow-border"
-            >
-              <ContactForm />
-            </motion.div>
-          </div>
-
-          <motion.a
-            href="https://maps.app.goo.gl/SKia674D4HQcW3DbA?g_st=ic"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group mt-20 flex items-center justify-center border border-white/[0.06] py-14 transition-colors hover:border-brand-red/30"
-          >
-            <div className="text-center">
-              <MapPin className="mx-auto text-brand-red" size={24} strokeWidth={1} />
-              <p className="mt-4 font-display text-2xl uppercase tracking-wide text-white transition-colors group-hover:text-brand-red">
-                Maroc
-              </p>
-              <p className="mt-2 text-sm text-luxury-muted">
-                Interventions sur l&apos;ensemble du territoire marocain
-              </p>
+              <div className="p-0">
+                <ContactForm compact />
+              </div>
             </div>
-          </motion.a>
+          </motion.div>
         </div>
       </section>
     </>
