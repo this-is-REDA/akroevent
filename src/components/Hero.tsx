@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import ParticleBackground from "./ParticleBackground";
-import AmbientOrbs from "./AmbientOrbs";
 import SplitText from "./SplitText";
 import GlitchText from "./GlitchText";
 import MagneticButton from "./MagneticButton";
@@ -61,12 +60,9 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
         </video>
       </motion.div>
 
-      <div className="cinematic-overlay absolute inset-0 z-[1]" />
-      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-brand-dark via-brand-dark/92 to-brand-dark/25" />
-      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-brand-dark via-brand-dark/40 to-brand-dark/70" />
-      <div className="absolute inset-x-0 top-0 z-[2] h-16 bg-brand-dark/80 sm:h-20" />
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_20%_50%,rgba(255,23,68,0.42)_0%,transparent_60%)]" />
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_80%_80%,rgba(255,213,79,0.12)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#000_0%,rgba(0,0,0,0.85)_30%,rgba(0,0,0,0.35)_50%,transparent_70%)]" />
+      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(0,0,0,0.5)_0%,transparent_45%)] [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_60%)]" />
+      <div className="absolute inset-x-0 top-0 z-[2] h-16 bg-black/70 sm:h-20 [mask-image:linear-gradient(to_right,black_0%,black_50%,transparent_85%)]" />
 
       <motion.div
         className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-end overflow-hidden pr-0 lg:pr-8"
@@ -80,7 +76,6 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
         </p>
       </motion.div>
 
-      <AmbientOrbs variant="hero" />
       <div
         className="grid-premium pointer-events-none absolute inset-0 z-[4] opacity-30"
         aria-hidden="true"
