@@ -62,7 +62,6 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
 
       <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#000_0%,rgba(0,0,0,0.85)_30%,rgba(0,0,0,0.35)_50%,transparent_70%)]" />
       <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(0,0,0,0.5)_0%,transparent_45%)] [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_60%)]" />
-      <div className="absolute inset-x-0 top-0 z-[2] h-16 bg-black/70 sm:h-20 [mask-image:linear-gradient(to_right,black_0%,black_50%,transparent_85%)]" />
 
       <motion.div
         className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-end overflow-hidden pr-0 lg:pr-8"
