@@ -60,8 +60,15 @@ export default function Hero({ heroVideoSrc = "/hero-vr.mp4" }: HeroProps) {
         </video>
       </motion.div>
 
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#000_0%,rgba(0,0,0,0.85)_30%,rgba(0,0,0,0.35)_50%,transparent_70%)]" />
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(0,0,0,0.5)_0%,transparent_45%)] [mask-image:linear-gradient(to_right,black_0%,black_35%,transparent_60%)]" />
+      {/* Noir pleine hauteur à gauche — dégradé vers la droite */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(to_right,#000_0%,#000_48%,rgba(0,0,0,0.82)_62%,rgba(0,0,0,0.35)_78%,transparent_100%)] md:bg-[linear-gradient(to_right,#000_0%,rgba(0,0,0,0.9)_20%,rgba(0,0,0,0.45)_36%,transparent_58%)]"
+        aria-hidden="true"
+      />
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.2)_28%,transparent_48%)] [mask-image:linear-gradient(to_right,black_0%,black_55%,transparent_85%)]"
+        aria-hidden="true"
+      />
 
       <motion.div
         className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-end overflow-hidden pr-0 lg:pr-8"
